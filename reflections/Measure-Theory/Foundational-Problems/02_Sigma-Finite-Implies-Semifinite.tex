@@ -1,0 +1,69 @@
+\noindent\textbf{Source:}
+Folland, \emph{Real Analysis}, Second Edition.
+
+\medskip
+
+\noindent\textbf{Area:}
+Measure Theory
+
+\medskip
+
+\noindent\textbf{Type:}
+Foundational Problem
+
+\medskip
+
+\noindent\textbf{Status:}
+Personal solution and structural interpretation.
+
+\medskip
+
+\noindent\textbf{Date:}
+January 2026
+\section*{Problem 02: Every $sigma$ Finite Measure is Semifinite}
+This problem arose during my study of Measure Theory (MA222, Indian Institute of Science), following Chapter 1 of Folland's \emph{Real Analysis} (Second Edition).
+
+Beyond presenting a complete proof, I include a structural interpretation explaining the central idea behind the argument and why this characterization appears naturally throughout modern measure theory.  
+\begin{problem}
+Show that every $\sigma$-finite measure is semifinite. 
+\end{problem}
+\begin{solution}
+Let $\mu$ be a $\sigma$-finite measure on the $\sigma$-algebra $\mathcal{M}$. The measure space is $(X, \mathcal{M},\mu)$ (more formally, $\sigma$-finite measure space). Let $\{E_i\}_{i=1}^\infty$ be a sequence of measurable of sets in $\mathcal{M}$. Then, from the definition of $\sigma$-finite measure:
+\[
+X=\bigcup_{i=1}^\infty E_i\, , \mu(E_i)<\infty \quad \forall i
+\]
+Consider an arbitrary set $F\in\mathcal{M}$ such that $\mu(F)=\infty$. The key idea is to intersect $F$ with each $E_i$.:
+\[
+\bigcup_{i=1}^\infty (F\cap E_i)=F\cap \bigcup_{i=1}^\infty E_i= F\cap X= F
+\]
+Applying countable subadditivity gives:
+\[
+\mu(F)=\mu(\bigcup_{i=1}^\infty F\cap E_i)\le\sum_{i=1}^\infty \mu(F\cap E_i)
+\]
+If $\mu(F\cap E_i)=0,\, \forall i$ then $\sum_{i=1}^\infty\mu(F\cap E_i)=0$, which implies, $\mu(F)\le 0$. So, $\mu(F)=0$, which is a contradiction from the hypothesis that $\mu(F)=\infty$. Hence, in the above partial sum, there must be at least one $F\cap E_i$ whose $\mu(F\cap E_i)>0$. Let such a set be $F\cap E_N$ for some $E_N\subset \bigcup_{i=1}^\infty E_i$. Thus:
+\[
+F\cap E_N\subset E_N
+\]
+Using monotonicity:
+\[
+\mu(F\cap E_N)\le\mu(E_N)
+\]
+Now, from the $\sigma$-finiteness property, $\mu(E_N)<\infty$. Hence
+\[
+\mu(F\cap E_N)<\infty
+\]
+Let $F\cap E_N =G$. Then $\mu(G)>0$ and $\mu(G)<\infty$. Thus for $G:=F\cap E_N\subset F$:
+\[
+\boxed{0<\mu(G)<\infty}
+\]
+Hence every $\sigma$-finite measure is semifinite.
+\end{solution}
+
+\begin{interpretation}
+This problem establishes a foundational result in measure theory: every $\sigma$-finite measure is semifinite. It reveals that $\sigma$-finiteness is a stronger condition than semifiniteness. A $\sigma$-finite measure provides global control: the whole space can be covered by countably many measurable sets, each of finite measure. This global structure prevents pathological behavior by ensuring that every point of the space belongs to some measurable set of finite measure.
+
+Semifiniteness, by contrast, is a local condition: it only requires that any set of infinite measure contains a finite-positive subset. The $\sigma$-finite structure guarantees this locally finite behavior automatically. Indeed, if $A$ has infinite measure, then by $\sigma$-finiteness there exists a covering ${E_n}$ of $X$ with $\mu(E_n)<\infty$. Since $A = \bigcup_n (A \cap E_n)$, at least one intersection $A \cap E_k$ must have positive measure (otherwise $A$ would be a countable union of null sets). And because $\mu(A \cap E_k) \le \mu(E_k) < \infty$, this intersection is precisely the required finite-positive subset.
+
+Thus, $\sigma$-finiteness forces any globally infinite set to be locally finite in measure. It controls infinite-measure sets by forcing them to contain measurable subsets of finite positive measure
+—a phenomenon that underpins many approximation arguments in analysis (e.g., in Fubini's theorem, the Radon–Nikodym theorem, and the construction of product measures).
+\end{interpretation}
