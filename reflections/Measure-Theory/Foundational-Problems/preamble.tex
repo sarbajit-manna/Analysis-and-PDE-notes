@@ -1,0 +1,27 @@
+% preamble.tex
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% Theorem environments
+\newtheorem{problem}{Problem}[section]
+\theoremstyle{remark}
+\newtheorem*{solution}{Solution}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{remark}
+\newtheorem*{interpretation}{Structural Interpretation}
+% Useful commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\supp}{supp}
+% ... add your own

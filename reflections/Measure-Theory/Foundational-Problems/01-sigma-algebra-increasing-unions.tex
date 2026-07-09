@@ -1,0 +1,64 @@
+\noindent\textbf{Source:}
+Folland, \emph{Real Analysis}, Second Edition.
+
+\medskip
+
+\noindent\textbf{Area:}
+Measure Theory
+
+\medskip
+
+\noindent\textbf{Type:}
+Foundational Problem
+
+\medskip
+
+\noindent\textbf{Status:}
+Personal solution and structural interpretation.
+
+\medskip
+
+\noindent\textbf{Date:}
+July 2026
+\section*{Problem 01: Characterizing Sigma-Algebras by Increasing Unions}
+
+This problem arose during my study of Measure Theory (MA222, Indian Institute of Science), following Chapter 1 of Folland's \emph{Real Analysis} (Second Edition).
+
+Beyond presenting a complete proof, I include a structural interpretation explaining the central idea behind the argument and why this characterization appears naturally throughout modern measure theory.  
+
+\begin{problem}
+
+Prove that an Algebra $\mathcal{A}$ is a $\sigma$-algebra if and only if $\mathcal{A}$ is closed under increasing unions, i.e., if $\{E_i\}_{i=1}^\infty\subseteq \mathcal{A}$ and $E_1\subseteq E_2\subseteq\cdots$, then $\bigcup_{i=1}^\infty E_i\in\mathcal{A}$.  
+\end{problem}
+\begin{solution}
+$\implies$ Assume $\mathcal{A}$ is a $\sigma$-algebra. Let $\{E_i\}_{i=1}^\infty$ be an increasing sequence i.e., $E_1\subseteq E_2\subseteq\cdots$. Since a $\sigma$-algebra is closed under arbitrary countable unions, we have:
+\[
+\bigcup_{i=1}^\infty E_i\in\mathcal{A}
+\]
+Thus, $\mathcal{A}$ is closed under increasing unions. 
+Hence, the forward direction proves that if $\mathcal{A}$ is a $\sigma$-algebra, then $\mathcal{A}$ is closed under increasing unions. 
+
+$\impliedby$
+Now consider the reverse direction. Assume $\mathcal{A}$ is an algebra and closed under increasing unions. Let $\{E_n\}_{n=1}^\infty$ be an arbitrary family (not necessarily increasing). Define a new sequence by:
+\[
+F_n=\bigcup_{k=1}^n E_k \qquad (n\ge 1)
+\]
+Since $\mathcal{A}$ is an algebra, each $F_n\in\mathcal{A}$. This is trivial as an algebra is closed under finite union and $E_k\in \mathcal{A}$. Moreover $\{F_n\}$ is increasing: $F_1\subseteq F_2\cdots$. By 
+\[
+\bigcup_{n=1}^\infty F_n\in \mathcal{A}
+\]
+But $\bigcup_{n=1}^\infty F_n=\bigcup_{n=1}^\infty E_n$. Hence, $\bigcup_{n=1}^\infty E_n \in \mathcal{A}$, showing that $\mathcal{A}$ is closed under arbitrary countable unions. Now $\mathcal{A}$ already contains complements and empty set, it satisfies the axioms of $\sigma$-algebra. So, the key thing we needed to establish in the reverse direction that the given algebra is closed under arbitrary countable unions, which already proved. Now $\mathcal{A}$ satisfies all the properties of $\sigma$-algebra.\newline
+Thus $\mathcal{A}$ is a $\sigma$-algebra.
+\end{solution}
+\begin{interpretation}
+The forward direction of the above proposition is straightforward: $\mathcal{A}$ is a $\sigma$-algebra. A $\sigma$-algebra is closed under countable unions, so in particular it is closed under the special case of increasing unions. The deeper insight is required in the reverse direction. 
+
+ Here, we start with an algebra that is closed under increasing unions. To conclude that $\mathcal{A}$ is closed under arbitrary countable unions, we transform an arbitrary family into an increasing one. The key idea is to \emph{monotonize} any given countable countable family $\{E_n\}\subset\mathcal{A}$ by considering sequence of finite unions $F_n=\bigcup_{k=1}^n E_k$. Each $F_n$ lies in $\mathcal{A}$ (since an algebra is closed under finite unions), and $F_n$ is increasing by construction. By hypothesis, $\bigcup_{n=1}^\infty F_n\in\mathcal{A}$. But $\bigcup_{n=1}^\infty F_n=\bigcup_{n=1}^\infty E_n$. This proves that $\mathcal{A}$ is closed under arbitrary countable unions.
+ 
+ This is simple but very powerful technique---replacing an arbitrary countable unions by an increasing one, and this appears throughout measure theory, analysis. This is the essence of the monotone class theorem---an algebra that is also a monotone class (i.e., closed under increasing unions or decreasing intersections) is a $\sigma$-algebra.
+
+ 
+This observation also underlines a proof that the collection of Lebesgue-measurable sets forms a $\sigma$-algebra: first by showing it is an algebra (using complements and finite unions) and then verifies closure under increasing unions via an outer measure argument. Thus the proposition is not just a technical exercise but a foundational lemma that captures the core mechanism by which $\sigma$-algebras arise in practice. 
+\end{interpretation}
+
+
