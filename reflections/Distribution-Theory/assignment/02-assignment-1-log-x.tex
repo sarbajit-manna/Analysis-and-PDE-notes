@@ -1,0 +1,149 @@
+\noindent\textbf{Source:} Analysis III (MA 321), Lecture notes and course material.
+
+\noindent\textbf{Instructor:} Prof. A.K. Nandakumaran
+
+\noindent\textbf{Area:} Distribution Theory
+
+\noindent\textbf{Type:} Problem Solving
+
+\noindent\textbf{Status:} Personal solution with detailed derivation.
+
+\noindent\textbf{Date:} February 2026
+
+\section*{Analysis III – Assignment 1:
+Distributional Derivative of \texorpdfstring{$\log|x|$}{log|x|}}
+
+This document contains a complete solution to Problem 1 of Assignment I from the Analysis III course at IISc. The problem illustrates how a locally integrable function defines a distribution and how its distributional derivative is computed.
+
+\begin{problem}[Problem 1]
+    Show that $f=\log|x|$ is locally integrable and hence defines a distribution. Calculate $\frac{d}{dx}\log|x|$.
+\end{problem}
+
+\begin{solution}
+
+\textbf{Local integrability.}
+The function $f=\log|x|$ diverges at $x=0$. To prove local integrability, it suffices to examine a compact set containing the singular point. Let $K\subset\subset\mathbb{R}^n$ be compact. Then $K\subset B(0,R)$ for some $R>0$. Hence
+\[
+\int_K |\log|x||\, dx \le \int_{B(0,R)} |\log|x||\, dx.
+\]
+For $\epsilon>0$, split the integral:
+\[
+\int_{B(0,R)} |\log|x||\, dx
+=
+\int_{B(0,\epsilon)} |\log|x||\, dx
++
+\int_{\epsilon\le |x|\le R} |\log|x||\, dx.
+\]
+The second integral is finite because $\log|x|$ is bounded on the annulus $\epsilon\le |x|\le R$. For the first, use polar coordinates:
+\[
+\int_{B(0,\epsilon)} |\log|x||\, dx
+=
+\omega_{n-1} \int_0^\epsilon |\log r|\, r^{n-1}\, dr,
+\]
+where $\omega_{n-1}$ is the surface area of the unit sphere. The integral is finite since
+\[
+\int_0^\varepsilon |\log r|\,r^{n-1}\,dr<\infty,
+\]
+which follows from the fact that \(r^{n-1}\) dominates the logarithmic singularity near \(r=0\). Hence
+\[
+\int_{B(0,\epsilon)} |\log|x||\, dx < \infty.
+\]
+Therefore $f\in L^1_{\text{loc}}(\mathbb{R}^n)$.
+
+\textbf{Definition as a distribution.}
+For any test function $\phi\in\mathcal{D}(\mathbb{R})$, define
+\[
+\langle T_f,\phi\rangle = \int_{\mathbb{R}} \log|x|\, \phi(x)\, dx.
+\]
+The integral converges absolutely because $\phi$ has compact support and $f$ is locally integrable. We verify the two defining properties of a distribution:
+
+\begin{itemize}
+    \item \textit{Linearity:} For any $\phi,\psi\in\mathcal{D}(\mathbb{R})$ and $a,b\in\mathbb{R}$,
+    \[
+    \langle T_f, a\phi+b\psi\rangle
+    =
+    a\langle T_f,\phi\rangle + b\langle T_f,\psi\rangle.
+    \]
+
+    \item \textit{Continuity:} Let $K\subset\mathbb{R}$ be compact and $\{\phi_j\}\subset\mathcal{D}(\mathbb{R})$ with $\operatorname{supp}\phi_j\subset K$ such that $\phi_j\to0$ in $\mathcal{D}(\mathbb{R})$. Then
+    \[
+    |\langle T_f,\phi_j\rangle|
+    \le
+    \int_K |\log|x||\, |\phi_j(x)|\, dx
+    \le
+    \sup_{x\in K} |\phi_j(x)| \int_K |\log|x||\, dx.
+    \]
+    Since $\int_K |\log|x||\, dx < \infty$ and $\sup_K |\phi_j|\to 0$, we have $\langle T_f,\phi_j\rangle\to0$.
+\end{itemize}
+
+Thus the functional \(T_f\) defines a distribution associated with the locally integrable function \(\log|x|\). By abuse of notation, this distribution is also denoted by \(\log|x|\).
+
+\textbf{Distributional derivative.}
+By definition,
+\[
+\left\langle \frac{d}{dx}\log|x|,\;\phi\right\rangle
+=
+-\left\langle \log|x|,\;\phi'\right\rangle
+=
+-\int_{\mathbb{R}} \log|x|\, \phi'(x)\, dx
+\qquad \forall\phi\in\mathcal{D}(\mathbb{R}).
+\]
+Interpret the integral as the improper limit:
+\[
+-\int_{-\infty}^{\infty} \log|x|\, \phi'(x)\, dx
+=
+-\lim_{\varepsilon\to0^+}
+\left(
+\int_{-\infty}^{-\varepsilon} + \int_{\varepsilon}^{\infty}
+\right)
+\log|x|\, \phi'(x)\, dx.
+\]
+On each interval, $\log|x|$ is smooth. Integrate by parts:
+\[
+\int_{\varepsilon}^{\infty} \log x\, \phi'(x)\, dx
+=
+-\log\varepsilon\, \phi(\varepsilon)
+-
+\int_{\varepsilon}^{\infty} \frac{\phi(x)}{x}\, dx,
+\]
+and
+\[
+\int_{-\infty}^{-\varepsilon} \log|x|\, \phi'(x)\, dx
+=
+\log\varepsilon\, \phi(-\varepsilon)
+-
+\int_{-\infty}^{-\varepsilon} \frac{\phi(x)}{x}\, dx.
+\]
+Adding and multiplying by $-1$:
+\[
+-\left(
+\int_{\varepsilon}^{\infty} + \int_{-\infty}^{-\varepsilon}
+\right)
+\log|x|\, \phi'(x)\, dx
+=
+\log\varepsilon\, (\phi(\varepsilon)-\phi(-\varepsilon))
++
+\int_{\varepsilon}^{\infty} \frac{\phi(x)}{x}\, dx
++
+\int_{-\infty}^{-\varepsilon} \frac{\phi(x)}{x}\, dx.
+\]
+As $\varepsilon\to0^+$, the first term vanishes because $\phi(\varepsilon)-\phi(-\varepsilon)=O(\varepsilon)$. Hence
+\[
+\left\langle \frac{d}{dx}\log|x|,\;\phi\right\rangle
+=
+\operatorname{pv}\int_{-\infty}^{\infty} \frac{\phi(x)}{x}\, dx.
+\]
+Therefore,
+\[
+\boxed{\frac{d}{dx}\log|x| = \operatorname{pv}\frac{1}{x}}
+\]
+in the sense of distributions.
+
+\end{solution}
+\begin{interpretation}
+
+Although $\log|x|$ is singular at the origin, its singularity is sufficiently mild to remain locally integrable. Distribution theory therefore allows us to treat $\log|x|$ as a generalized function.
+
+The appearance of the principal value distribution reflects the fact that differentiation amplifies the singularity from a locally integrable logarithm to the non-integrable function \(1/x\). The principal value provides the natural extension of differentiation beyond classical functions and illustrates one of the central ideas of weak analysis: singular objects can still possess well-defined derivatives in the distributional sense.
+
+\end{interpretation}
