@@ -1,0 +1,97 @@
+\section{Riemann Integral}
+The celebrated Riemann integral, used in finding the area under the curves, carries conceptual sequences that bridge the gaps to truly understand the traditional integration. I will start with the most important thing essential to grasp the Riemann integral.
+\begin{concept}[Partition]
+A partition is used in the desired closed interval $[a, b]$, where $a, b\in \R$ and $a<b$, for making finer sub-divisions of $[a, b]$. If we consider a finite list $x_0, x_1,\cdots ,x_n$, inside the primary interval, then it gives a finite ordered set to be called partition:
+\[
+a=x_0<x_1<x_2<\cdots <x_n=b
+\]
+This partition can truly now capture the whole interval $[a, b]$, and can be imagined this closed interval as finite union of these closed sub-intervals $[x_{j-1}, x_j]$, as
+\[
+[a, b] = \bigcup_{j=1}^n [x_{j-1}, x_j]
+\]
+Simply: finer the partition, better will be the accuracy. 
+For capturing any function in $[a,b]$ with the highest details, intuitively, finest partition is ideal. As moving forward, the profoundness of partition will be revealed. Throughout next, the notation $P$ will be used referring finite sequence for partition.
+\end{concept}
+\begin{analogy}
+    I imagine it as a knife, where we are looking for a sharpest knife and the most skillful hand to chop inside the interval as fine as possible. Hence, sharper the knife in a skillful hand, allowing us to capture more detail of the function on $[a, b]$.
+\end{analogy}
+\begin{definition} [Lower Riemann Sum]
+    A lower Riemann sum $L(f, P, [a, b])$ is used to capture the bounded function $f: [a, b]\to \R$ with each sub-intervals of the partition as possible lowest height rectangles. It gives the total area of the rectangles, covering the interval $[a, b]$, where the height of each rectangle is the infimum of the function $f$ and the width as $[x_{j-1}, x_j]$. Lower Riemann sum is defined as
+    \[
+    L(f, P, [a, b]) = \sum_{j=1}^n (x_j-x_{j-1}) \inf_{[x_{j-1}, x_j]} f
+    \]
+\end{definition}
+\begin{definition}[Upper Riemann Sum]
+    An upper Riemann sum $U(f, P, [a,b])$ keeps the similar concept of $L(f, P, [a, b]$, just with the modification of the heights of the rectangles. Here, the heights of the rectangles are the supremum of the function $f$ in each sub-intervals $[x_{j-1}, x_j]$. Hence, the definition will be
+    \[
+    U(f, P, [a, b]) = \sum_{j=1}^n (x_j-x_{j-1}) \sup_{[x_{j-1}, x_j]} f
+    \]
+\end{definition}
+\begin{concept}[Lower and Upper Riemann Sum.]
+    The true objective of lower and upper Riemann sums is to evaluate the area under the function in a maximum efficient way. Lower Riemann sum represents area under the curve from just the below of the function. Whereas, the upper Riemann sum represents the area from just above the function. The rectangles in lower Riemann sum occupy little less area than the true area and the reverse happens in the case of upper Riemann sum. Hence
+    \[
+    L(f, P, [a, b])\leq U(f, P, [a,b])
+    \]
+    and the equality is trivial for any constant function, as $\inf f = \sup f$. The purpose for these two sums is to make this inequality to equality. The only thing that could do that is partition or $P$. If one makes the partition finer, lower Riemann sum increases and upper Riemann sum decreases and continuing the inclusion of partition $P$, keeping the interval same, can eventually make the two sums equal. This is the true beauty of Riemann sums for defining the Riemann integral. 
+\end{concept}
+\begin{definition}[Lower Riemann Integral]
+    As the previous concept pushes that our objective is to increase the lower Riemann sum for closely capturing the total area of the bounded function in the interval $[a, b]$, lower Riemann integral $L(f, [a,b])$ is defined as
+    \[
+    L(f, [a, b]) = \sup_P L(f, P, [a, b])
+    \]
+    The suffix $P$ below supremum confirms that this can only be achieved by controlling the supremum, which actually, to tighten the partition. Here, the supremum is taken over all partitions $P$ of $[a, b]$.
+\end{definition}
+
+\begin{definition}[Upper Riemann Integral]
+Upper Riemann integral represents the infimum of the Upper Riemann sum. Hence
+\[
+U(f, [a, b]) = \inf_P L(f, P, [a, b])
+\]
+The upper Riemann sum is decreased with the tightening of the partition, which is desired. Here the infimum is taken over all partitions $P$ of $[a, b]$. 
+    
+\end{definition}
+It is easy to visually verify the following theorem regarding lower and upper Riemann integral.
+\begin{theorem}
+    A bounded function $f:[a, b]\to \R$. Then
+    \[
+    L(f, [a, b])\leq U(f, [a, b])
+    \]
+\end{theorem}
+This leads to decide when a bounded function can be called as Riemann integrable. Both lower and upper Riemann integral are intuitively very close to the true area. But one equality imposition will make it most accurate and end this confusion.
+\begin{definition}[Riemann Integrable]
+    A bounded function on a closed bounded interval is called \textit{Riemann Integrable} if its lower Riemann integral equals its upper Riemann integral. 
+    \[
+    L(f, [a, b]) = U(f, [a, b])
+    \]
+    This is the popular integration of a function $f$ bounded in a closed interval $[a, b]$
+    \[
+    \int_a^b f = L(f, [a, b]) = U(f, [a, b])
+    \]
+\end{definition}
+\begin{concept}[Functions Not Riemann Integrable]
+    This section will highlight the fact that this mathematically precise definition of Riemann integral is not applicable to all functions. The most appreciated example is the Dirichlet function.\\
+    \textbf{Dirichlet Function}: The Dirichlet function $f(x)$ is
+    \[
+    f(x)=
+\begin{cases}
+1, & x \in \mathbb{Q}, \\
+0, & x \in \mathbb{R}\setminus\mathbb{Q}.
+\end{cases}
+    \]
+  If $[a, b]\in\R$ \& $a<b$, then $\exists t\in [a, b]$ such that $t\in \mathbb{Q}$ and, $\exists s\in [a, b]$ such that $s\notin \mathbb{Q}$. Take an interval $[0, 1]$ and the partition $P={x_0, x_1,\cdots ,x_N}$ with each sub-interval $[x_{j-1}, x_j]$. Then
+  \[
+  \sup_{[x_{j-1}, x_j]} f =1
+  \]
+  and 
+  \[
+  \inf_{[x_{j-1}, x_j]} f = 0
+  \]
+  This must be true as $f$ is Dirichlet function, which means in every sub-interval $[x_{j-1}, x_j]$, there is a rational number and an irrational number (Real analysis theorem). Thus $f=1$ and $f=0$ belong to every sub-interval. Hence, lower Riemann sum is zero and upper Riemann sum is 1 for each sub-interval. Thus lower Riemann integral and upper Riemann integral are not equal. Hence, the Dirichlet function is not Riemann integrable.
+\end{concept}
+\subsection{ Failure of Riemann Integral}
+\begin{enumerate}
+    \item Riemann integral fails for functions with many discontinuities such as the Dirichlet function in the previous example.
+    \item Riemann integral fails for unbounded functions and strictly applicable for bounded continuous functions.
+    \item  Doesn't work well with pointwise limits like the Dirichlet function.
+\end{enumerate}
+These insist a requirement for more precise theory of integration and the Riemann integral, although very strong, is not ideal. This opens the door for \textit{Measure Theory}, which is an abstract and most accurate theory of integration for any types of functions. The intuitive clarity of measure theory can only be developed from a true understanding of the \textit{Outer Measure}. This is what I am starting with in the next section. 

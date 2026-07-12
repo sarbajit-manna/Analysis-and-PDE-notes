@@ -1,0 +1,118 @@
+\section{Some Nice Properties of Outer Measure}
+
+\begin{theorem}
+    Every countable subset of $\R$ has outer measure 0.
+\end{theorem}
+\begin{proofsketch}
+    The main idea here ( and most outer measure proofs/problems) is to accurately define the open cover of each countable set. A countable set means it contains distinct elements inside the set. Hence, each element can be covered individually without influencing other. A perfect countable set can be $ A = \{a_1, a_2, \cdots , a_k\} \subset \R$, where each element are singleton $\{a_k\}$. An $\epsilon$-neighborhood of open interval around each $\{a_k\}$ is absolutely feasible. The mature question should come here: what should be the most ideal way to define this interval containing $\{a_k\}$? This is
+    \[
+    (a_k - \frac{\epsilon}{2^k}, a_k+\frac{\epsilon}{2^k})
+    \]
+    Why $\frac{\epsilon}{2^k}$ and not only $\epsilon$?\\
+    This is the key understanding. A singleton in a countable set gives trouble when capturing using the open covers. The reason is, a singleton is exactly a point and one needs infinitely close interval to capture in a most close way. This $\frac{\epsilon}{2^k}$ helps to take infinite sum of the intervals, as with each sum over $k$, reduces the length of the interval and comes extremely close to $\{a_k\}$. The sequence tells that the infinite sum is like $1+\sum_{n=1}^\infty \frac{1}{n}, \forall n\in \mathbb{N}$. Which is just 1. Hence the infinite sum of all these intervals
+    \[
+    \sum_{k=1}^\infty l(I_k) = 2\epsilon
+    \]
+    So from the definition of outer measure
+    \[
+    \mstar(A) \leq 2\epsilon
+    \]
+    Now, $\epsilon$ is an arbitrary positive number. Thus, $\mstar(A) = 0$. This completes the proof. 
+\end{proofsketch}
+\begin{remark}
+    The $2^k$ in the denominator of the neighborhood makes only sense here because it is around a singleton. So in the length of interval, $\{a_k\}$ vanishes. That is
+    \[
+    l(I_k)=(a_k+\frac{\epsilon}{2^k})-(a_k-\frac{\epsilon}{2^k})=\frac{2\epsilon}{2^k}
+    \]
+    and remains only $\epsilon$ term which will not trouble at all with infinite sum. But this would terribly fail for any other subset of $\R$ (eg. $(a, b)$) as the interval would be $(b-a)+\frac{2\epsilon}{2^k}$. And this infinite sum would only give $\infty$ as the infinite sum of any finite interval would give only $\infty$. 
+\end{remark}
+\begin{concept}[Outer Measure of Countable Set]
+    The previous theorem that the outer measure of any countable set of $\R$ is 0, carries significant weight. Intuitively, one cannot make a nonzero cover from the collection of open intervals to capture point like elements. Points are truly zero length structure and outer measure zero strengthens this very fact. This actually says, any finite set of real numbers(points), will always give outer measure 0. More specifically, any set of distinct numbers will always give zero total outer measure. Any open interval for covering a singleton is squeezing to zero. This is also one of the drawbacks of outer measure as will be explored later when I will explain Lebesgue measure. 
+\end{concept}
+One can generate another theorem from the above argument for a very important subset of real numbers.
+\begin{theorem}
+    The Outer measure of $\mathbb{Q}$ is always 0
+\end{theorem}
+Thus, one can also say that $\mstar(\R\cap \mathbb{Q})=0$ (as used in one of the exercises). 
+The next theorem is extremely important to establish a relationship between two sets with the outer measure, when we know that one set is subset of another.
+\begin{theorem}[Monotone Theorem]
+    If $A, B \subset \R$ and most importantly $A \subset B$, then 
+    \[
+    \mstar(A) \leq \mstar(B)
+    \]
+\end{theorem}
+\begin{proofsketch}
+    As $A \subset B$, every open cover of $B$, quite intuitively, must also contain $A$. Hence
+    \[
+    \mstar(A) \leq \sum_{k=1}^\infty l(I_k)
+    \]
+    where right side of the inequality represents the cover of set $B$. Taking infimum over all sequences of open intervals whose union contains $B$, one can easily get $\mstar(A) \leq \mstar(B)$.
+\end{proofsketch}
+\begin{definition}[Translation Preserves Outer Measure]
+    For any scalar $t\in \R$, and $A \subset \R$, translating the set $A$ by $t$ is basically
+    \[
+    t+A = \{t+a:a\in A\}
+    \]
+    Now, the key thing in the basis of outer measure, is that length of an open or closed interval(theorem comes later), cannot be affected by translating the set along the $\R$. If one is not modifying the set, the interval will give exactly the same infimum over all lengths of the cover, i.e. the outer measure will remain exactly the same, by translating with some scalar amount along the $\R$. 
+\end{definition}
+This gives another property of the outer measure, which can be mentioned as a theorem.
+\begin{theorem}
+    Outer measure is translation invariant. \\
+    If $t\in \R$ and $A \subset \R$, then 
+    \[
+    \mstar(t + A)=\mstar(A)
+    \]
+\end{theorem}
+\begin{proofsketch}
+    Although, the intuition is not hard enough for translation invariance of outer measure, the proof needs a trick! Consider a set $A \subset \R$ then
+    \[
+    \mstar(t+A) \leq \sum_{k=1}^\infty l(t+I_k)
+    =\sum_{k=1}^\infty l(I_k)=\mstar(A)
+    \]
+    The main trick is to prove the opposite inequality. Writing the set $A$ as
+    \[
+    A = -t +(t+A)
+    \]
+    taking outer measure both sides
+    \[
+    \mstar(A) = \mstar(-t + (t+A))
+    \]
+    Now using above inequality
+    \[
+    \mstar(-t +(t+A)) \leq \mstar(t+A)
+    \]
+    This is obvious as $\mstar(-t) =0$ as $-t$ is just a singleton. Hence
+    \[
+    \mstar(A) \leq \mstar(A)
+    \]
+    Thus, it proves the equality
+    \[
+    \mstar(t+A) = \mstar(A)
+    \]
+\end{proofsketch}
+\begin{example}
+    Take intervals $(2, 7)$ and $(6, 10)$. 
+    \[
+    l((2, 7) \cup (6, 10)) = l(2, 10)=8
+    \]
+    and the sum of individual interval lengths
+    \[
+    l(2, 7) + l(6, 10) = 5+4=9
+    \]
+    The key reason for this strict inequality is that $(2, 7)$ and $(6, 10)$ are not pair wise disjoint. This will give clarity with sub-additivity theorem. 
+\end{example}
+\begin{theorem}[Countable Subadditivity of Outer Measure]
+    \[
+    \mstar(\bigcup_{k=1}^\infty A_k) \leq \sum_{k=1}^\infty \mstar(A_k)
+    \]
+\end{theorem}
+\begin{proofsketch}
+    The trick for this proof is
+    \[
+    \sum_{j=1}^\infty l(I_{j,k})\leq \frac{\epsilon}{2^k} + \mstar(A_k)
+    \]
+    
+\end{proofsketch}
+\begin{concept}
+    It is intuitively very clear, especially for non-disjoint sets, the open cover and the infimum of the total length of the intervals, should always be less than the infimum length of the open intervals for individual set separately considering. This is countable subadditivity of outer measure. It is applied to sequences of subsets.  
+\end{concept}

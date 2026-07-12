@@ -1,0 +1,69 @@
+\section{Outer Measure of Closed Bounded Interval}
+
+Now, we have reached to the interval which is the only concerned interval for Riemann integration. This section will precisely show why the outer measure for a closed interval $[a, b]$ where $a<b$, is $b-a$. The proof of this will again claim the beauty of open $\epsilon$-neighborhood to determine outer measure. The key understanding for this proof is open cover. Open cover has been mentioning throughout this article for deliberately defining outer measure. But a proper definition will be nice.
+\begin{definition}[Open Cover]
+    If $A \subset \R$ then a collection $\mathcal{C}$ of open subsets of $\R$ is called an open cover of $A$ if $A$ is contained in the union of all sets in $\mathcal{C}$. But this open cover is not unique, and there can be several ways we can use open cover to contain a set. 
+\end{definition}
+\begin{proofsketch}
+    The first inequality to prove that
+    \[
+    \mstar([a, b]) \leq b-a
+    \]
+    If one takes sequence of open intervals $(a-\epsilon, b+\epsilon), \emptyset, \emptyset, \cdots$, whose union contains $[a, b]$, then
+    \[
+    \mstar([a, b]) \leq b-a +2\epsilon
+    \]
+    Now this holds true for all $\epsilon>0$
+    \[
+    \mstar([a, b]) \leq b-a
+    \]
+    The main and challenging inequality to prove is the opposite one. This needs the celebrated \textit{Heine-Borel} theorem. 
+\end{proofsketch}
+\subsubsection{Celebrated Heine-Borel Theorem}
+
+\begin{theorem}[Heine-Borel Real Analysis Version]
+    Say, $A \subset \R$ and $A$ is compact if and only if $A$ is bounded and closed.
+\end{theorem}
+\begin{proofsketch}
+    $\impliedby$ If $A$ is bounded, any sequence $(a_n)\in A$ must have a converging subsequence (Bolzano-Weierstrass Theorem). Hence accumulation point or limit point exists. This guarantees convergence. Hence is compact.\\
+    $\implies$ $A$ is compact. Hence a sequence $(a_n)\in A$ and $\lim (a_n)=a\in \R$. If we can prove that $a \in A$, it will prove that $A$ is closed. Now, as $A$ is compact---it has an accumulation or limit point. Say, $a \in A$. As a convergence sequence can have only one limit point
+    \[
+    \lim (a_n)=a\in A
+    \]
+    Thus $A$ is closed. Next we need to show that $A$ is bounded. Let's use contraposition. If $A$ is not bounded, then a sequence $(a_n)\in A$. So, from the definition of unboundedness
+    \[
+    |a_n| > n,  \forall n\in \mathbb{N}
+    \]
+    But as we already found that $(a_n)$ cannot have any accumulation or limit point value, it contradicts our finding of unique limit point. Hence $A$ is bounded. Both way proof done. 
+\end{proofsketch}
+\begin{theorem}[Heine-Borel Measure-theoretic or Topological version]
+Every open cover of a closed and bounded subset of $\R$ has a finite subcover. 
+\end{theorem}
+\begin{remark}
+    This above measure-theoretic version of Heine-Borel theorem is exactly saying the same thing of real analysis version of it. Thus, it exactly defines \textit{Compactness}. It basically says $[a, b]$, which is compact, then any open cover of $[a, b]$ that contains $[a, b]$, must have a finite subcover to capture it. Outer measure for any closed interval $[a, b]$ is defined with the inequality of open cover i.e. sum of finitely many open intervals or lengths. 
+    \[
+    \mstar([a, b]) \leq \text{Sum of finitely many open intervals or lengths}
+    \]
+    This is exactly \textit{Heine-Borel} theorem or compactness, borrowed from real analysis. Thus, Heine-Borel theorem says that if $[a, b]$ is compact, then finite subcover exists and hence $\implies$
+    \[
+    [a, b] \subset \bigcup_{k=1}^N I_k
+    \]
+    Some key significances of Heine-Borel theorem are
+    \begin{itemize}
+        \item Every continuous function on compact set must be uniformly continuous.
+        \item Continuous functions on compact set attains maximum and minimum values.
+        \item Convergence and limits.
+        \item A set in $\R$ is sequentially compact iff it is closed and bounded (compact).
+        \item In metric spaces, Heine-Borel property is not generally true.
+        
+    \end{itemize}
+    \end{remark}
+    \begin{proofsketch}[Classic Proof of Heine-Borel Theorem]
+        \textbf{Bisection Method}: Take a closed and bounded interval $[a, b]$. We need to show it is compact. Say, no finite subcover. Let's start with a relatively large open interval $I_1$. Then repeatedly halve the interval. We can always take some point $c$ which will always be in the intersection of all finite intervals. But $c$ is in some open set of covers and, that open set covers a neighborhood of $c$. So it has a finite subcover. Contradicts our assumption. 
+    \end{proofsketch}
+    \begin{theorem}[Outer measure of A closed Interval]
+        Using Heine-Borel theorem and previous inequality proof: if $a, b\in \R$, with $a<b$, then 
+        \[
+        \mstar([a, b]) = b-a
+        \]
+    \end{theorem}

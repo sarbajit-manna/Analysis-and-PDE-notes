@@ -1,0 +1,249 @@
+    \section{Solutions of Exercise 2A (Axler) With My Insights}
+    \begin{exercise}
+        Prove that if $A$ and $B$ are subsets of $\R$ and $\mstar(B)=0$, then $\mstar(A\cup B)=\mstar(A)$.
+    \end{exercise} 
+    \begin{proof}
+        Using countable subadditivity
+        \[
+        \mstar(A\cup B) \leq \mstar(A) + \mstar(B)
+        \]
+        As $\mstar(B)= 0$
+        \begin{equation}
+            \mstar(A\cup B) \leq \mstar(A)
+        \end{equation}
+        Now think, if there is a way I can reverse this inequality. Because the prove demands equality.\\
+        using the monotone theorem, it is clear that
+        \[
+        A \subseteq A\cup B
+        \]
+        Hence
+        \begin{equation}
+        \mstar(A) \leq \mstar(A\cup B)
+        \end{equation}
+            Thus, using (1) and (2):
+       \[
+       \mstar(A\cup B)=\mstar(A)
+       \]       
+        \end{proof}
+    \begin{exercise}
+        Suppose $A \subset \R$ and $t\in \R$. Let $tA = \{ta : a\in A\}$. Prove that $\mstar(tA) = |t| \mstar(A)$
+    \end{exercise}
+    \begin{proof}
+        Case I: Trivial case\\
+        $A = \emptyset, t=0$. Then $\mstar(tA)=\mstar(\emptyset)=0=|t|\mstar(A)$\\
+        \[
+        A=\emptyset, t\neq 0
+        \]
+        Then 
+        \[
+        \mstar(tA)=\mstar(\emptyset)=0=|t|\mstar(A)
+        \]
+        \[
+        A\neq \emptyset, t=0
+        \]
+        Then
+        \[
+        \mstar(tA)=\mstar(\{0\})=0=|t|\mstar(A)
+        \]
+        Case II:
+        \[
+        t\neq 0, A\neq \emptyset
+        \]
+        Taking countable collection of open intervals $\{I_n\}$ and $\epsilon >0$. Then
+        \[
+        A \subseteq \bigcup_{n=1}^\infty I_n.
+        \]
+        Now, the length of the interval $I_n$ satisfies
+        \[
+        l(I_n) < \mstar(A) + \epsilon
+        \]
+        This strict inequality is always possible to create as $\epsilon>0$. Now, length of each scaled interval is
+        \[
+        l(tI_n) = |t| l(I_n)
+        \]
+        Thus,
+        \[
+        l(tI_n) = |t|l(I_n) < |t|(\mstar(A) +\epsilon)
+        \]
+        Taking the infimum on the length of interval
+        \[
+        \mstar(tA) \leq |t| \mstar(A) +|t| \epsilon
+        \]
+        Now, $\epsilon>0$ is arbitrary, and hence
+        \[
+        \mstar(tA) \leq |t| \mstar(A)
+        \]
+        Now, for the reverse inequality, we need to prove
+        \[
+        \mstar(tA) \geq |t|\mstar(A)
+        \]
+        Or, rearranging
+        \[
+        \mstar(A)\leq \frac{1}{|t|}\mstar(tA)
+        \]
+        This rearranging is the key step in this proof. Now, we can definitely replace $A$ with $tA$ and $t$ with $\frac{1}{t}$ in the previously obtained inequality. this gives
+        \[
+        \mstar\left(\frac{1}{t}(tA)\right) \leq \left|\frac{1}{t}\right|\mstar(tA)
+        \]
+        Thus
+        \[
+         \mstar(tA)\geq |t|\mstar(A)
+        \]
+So, as both sides inequalities are established, we found
+        \[
+        \mstar(tA) = |t|\mstar(A)
+        \]
+
+    \end{proof}
+    \begin{takeaway}
+        This equality gives an important theorem regarding the scaled outer measure of a subset of $\R$. So, a scaled outer measure of a subset is just the multiplication of the absolute magnitude of the scalar with the outer measure of the subset. \\
+        And regarding the proof for the nontrivial case, the reverse inequality implements a trick to rewrite the inequality, replacing the subset $A$ with $tA$ and, scalar $t$ with $\frac{1}{t}$. This is preserving the structure of the first inequality and gives the reverse inequality, which forces the equality. 
+    \end{takeaway}
+    \begin{exercise}
+        Prove that if $A, B \subset \R$ and $\mstar(A) < \infty$, then $\mstar(B\setminus A) \geq \mstar(B) - \mstar(A)$
+    \end{exercise}
+
+        \begin{proof}
+            Rearranging the given statement to verify, will immediately lead to a smooth track.
+            \[
+            \mstar(B\setminus A) +\mstar(A)\geq \mstar(B) 
+            \]
+            Now, a hint of subadditivity has automatically come! The job is if we can prove this or not. For that it is needed to check the sets only. From the basic set theory
+            \[
+            B\setminus A \cup A = B \cup A
+            \]
+            $\implies$
+            \[
+            \mstar(B\setminus A) +\mstar(A)\geq B \cup A
+            \]
+            It is obvious
+            \[
+            B \subseteq B \cup A
+            \]
+            Hence from the monotonicity theorem of outer measure:
+            \[
+            \mstar(B) \leq \mstar(B\cup A
+            \]
+            Using these two inequalities, it is certain
+            \[
+            \mstar(B\setminus A) +\mstar(A)\geq \mstar(B) 
+            \]
+            Thus
+            \[
+            \mstar(B\setminus A)\geq \mstar(B) - \mstar(A)
+            \]
+            Things to note: This proven inequality holds true only if $\mstar(A) < \infty$. Because if $\mstar(A) = \infty$ $\implies$ $\mstar(B\cup A) =\infty$. But
+            \[
+            \infty \ngtr \infty
+            \]
+            Hence, we could only claim the equality not the strict inequality if $\mstar(A)=\infty$. Thus the full inequality can only be established if the subset is finite. 
+        \end{proof}
+        \begin{takeaway}
+            The outer measure of a subset excluded from another subset of $\R$ greater than or equal to outer measure of the excluded subset subtracted from the outer measure of the another subset, gives an intuitive image. Say, when $A$ and $B$ are disjoint. Then $\mstar(B\setminus A)=\mstar(B)>\mstar(B)-\mstar(A)$ if A has a finite nonzero outer measure. The equality is guaranteed from this example, when $\mstar(A)=0$. Better visualization exercise is when we can take $A$ and $B$ with some partial overlapping. Now, it is clear that individual outer measure from the infimum, the infimum of the length of unions for subset $A$ will be little more as it will be counted twice. This gives the understanding of the strict inequality. The simple observation that $B \subseteq B\cup A$ is essential to use the monotonicity and eventually to establish the main inequality using subadditivity. The finiteness of the outer measure of subset $A$ is must for proving the inequality. But infinite outer measure of subset $A$ cannot say anything about the strict inequality. 
+        \end{takeaway}
+    \begin{exercise}
+        Prove that if $a, b \in \R$ and $a<b$ then
+        \[
+        \mstar((a, b))=\mstar([a, b)]=\mstar((a, b])=b-a
+        \]
+    \end{exercise}
+    \begin{proof}
+        The key finding is the proper open cover for these intervals. The best possible open cover, with an $\epsilon$-neighborhood, for all of these sets is
+        \[
+        (a-\epsilon, b+\epsilon)
+        \]
+        Then the length of the interval is
+        \[
+        I_k=b-a+2\epsilon
+        \]
+        Taking infimum
+        \[
+        \mstar(A)= b-a
+        \]
+        where $A$ represents each of the above subsets. 
+    \end{proof}
+    \begin{takeaway}
+        This is key result for the outer measure of differently types of intervals, including open, closed, half-open or half-closed. From infimum of open covers to include the intervals where the limit points are same, always give the difference of them as the outer measure. 
+    \end{takeaway}
+    \begin{exercise}
+        Suppose $a, b, c, d$ are real numbers with $a<b$ and $c<d$. Prove that
+        \[
+        \mstar((a,b)\cup (c,d)) = (b-a)+(d-c) 
+        \]
+        if and only if $(a, b)\cap (c,d)=\emptyset$
+    \end{exercise}
+    \begin{proof}
+        $\implies$ $\mstar((a,b)\cup (c,d)) = (b-a)+(d-c)$. Using the subadditivity
+        \[
+        \mstar((a,b)\cup (c,d)) \leq \mstar((a,b)) + \mstar((c,d))
+        \]
+        Now, $\mstar((a, b))=b-a$ and $\mstar((c, d))=d-c$. Thus
+        \[
+        \mstar((a,b)\cup (c,d)) \leq (b-a) + (d-c)
+        \]
+        If $(a, b) \cap (c, d) \neq \emptyset$, then
+        \[
+        \mstar((a,b)\cup (c,d)) < (b-a) + (d-c)
+        \]
+        This strict inequality as sum of each outer measure would always be more than the union, as evident from the infimum of interval length concept. But it is given that $\mstar((a,b)\cup (c,d)) = (b-a)+(d-c)$. Hence $(a, b) \cap (c, d) = \emptyset$.\\
+        \[
+        \impliedby (a, b)\cap (c, d) = \emptyset
+        \]
+        Taking an open cover of $(a, b)$ as $(a-\epsilon, b+\epsilon)$, the length of the open cover is
+        \[
+        l(I_{(a,b)})= b-a +2\epsilon
+        \]
+        Taking infimum gives $b-a$. Similarly
+        \[
+        \inf l(I_{(c,d)})=d-c
+        \]
+        Hence
+        \[
+        \mstar((a, b)) + \mstar((c, d)) = (b-a)+(d-c)
+        \]
+        The left side of above equality is only because they are disjoint and thus union is basically sum of the outer measures. 
+    \end{proof}
+    \begin{takeaway}
+        Explicitly, if two intervals intersect, they together lie in a single interval, whose measure strictly less than the sum of the individual outer measure. The equality only comes if they are disjoint, as the measure of the union is exactly the same of taking infimum of open interval lengths for each and sum them. This is the main understanding from this proof. 
+    \end{takeaway}
+    \begin{exercise}
+        Prove that if $A\subset \R$ and $t>0$, then $\mstar(A)=\mstar(A\cap (-t, t)) + \mstar(A\cap (\R\setminus(-t, t))$
+    \end{exercise}
+    \begin{proof}
+        From my initial observation, what I sense: if I can show that $A=(A\cap (-t, t))\cup (A\cap (\R\setminus(-t, t))$ and both $(A\cap (-t, t))$ and $(A\cap (\R\setminus(-t, t))$ are disjoint, then from subadditivity of outer measures, the job is done. This is exactly lead me to the full proof. 
+        \begin{takeaway}
+            A set is measurable if it splits every set additively via outer measure. This, what I proved using pure set-theoretic language, can actually be rigorously shown using the Lebesgue measure theorems, especially the Caratheodory's extension theorem. 
+        \end{takeaway}
+    \end{proof}
+    \begin{exercise}
+        Prove that $\mstar([0, 1]\setminus \mathbb{Q}) = 1$
+    \end{exercise}
+    \begin{proof}
+        The key observation here is that the known measure is $\mstar([0, 1])=1$. So, if this can be written in the form of $[0, 1]\setminus \mathbb{Q}$. Which definitely possible. 
+    \[
+    [0, 1] = ([0, 1]\setminus \mathbb{Q})\bigcup([0, 1]\cap \mathbb{Q})
+    \]
+    Applying outer measure
+    \[
+    \mstar([0, 1]) = \mstar(([0, 1]\setminus \mathbb{Q})\bigcup([0, 1]\cap \mathbb{Q}))
+    \]
+    In the first problem, it was proved that 
+    \[
+    \mstar(A\cup B)= \mstar(A)
+    \]
+    if $\mstar(B) = 0$. Hence,
+    \[
+    \mstar(([0, 1]\setminus \mathbb{Q})\bigcup([0, 1]\cap \mathbb{Q}))= \mstar(([0, 1]\setminus \mathbb{Q})+([0, 1]\cap \mathbb{Q}))
+    \]
+    As $([0, 1]\setminus \mathbb{Q})\cap([0, 1]\cap \mathbb{Q})=\emptyset$ and 
+    \[
+    \mstar([0, 1]\cap \mathbb{Q})=\mstar(\mathbb{Q)}=0
+    \]
+    Thus,
+    \[
+    \mstar(([0, 1]\setminus \mathbb{Q})\bigcup([0, 1]\cap \mathbb{Q}))=\mstar((0,1)\setminus\mathbb{Q})=\mstar([0,1])=1-0=1
+    \]
+    \end{proof}
+\begin{takeaway}
+    $\mathbb{Q}$ is an countable set and outer measure is zero. It is a dense set with outer measure zero. Whereas, $\R$ is a dense set with outer measure nonzero. 
+\end{takeaway}

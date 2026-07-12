@@ -1,0 +1,34 @@
+ \section{Outer Measure is Not Additive}
+    This is the crucial stage we reached, where it reflects now the weakness of the outer measure. This theorem reveals the imperfection of the outer measure for determining the absolute measurability of a set. Nonadditivity, without any doubt, is the strongest weakness of the outer measure for a set. 
+    \begin{theorem}
+        There exist disjoint subsets $A$ and $B$ of $\R$ such that
+    \[
+    \mstar(A\cup B) \neq \mstar(A) + \mstar(B)
+    \]
+    \end{theorem}
+    \begin{concept}
+        The outer measure of the union is not at all related to the outer measures of the individual sets. The most intuitive saying is that outer measures do not care about the structure of the set. It only tries to fit as efficiently as possible from the outside of the set. It is a type of cheapest cover. Hence, it doesn't respect the local behavior of the set. And during union of the sets, we are more interested in the local behavior during the cover. It is very likely with some visualization that local behavior of the set after union of the sets, maybe completely different and unrelated with local behavior of the individual parts. Recalling the main definition of the outer measure, it gives infinite freedom and flexibility for the open covers to capture the set as long as it contains the whole set. So, the tightest possible fit can be achieved from outside. But union of them mostly always give a situation where a different outside packing structure (or outer measure) arises. Hence equality and additivity, fails in outer measure. 
+    \end{concept}
+    \begin{example}
+        $A=\{0\}$ and $B=\{1\}$. Both are singleton. Hence 
+        \[
+        \mstar(A) = \mstar(B) = 0
+        \]
+        Thus
+        \[
+        \mstar(A) + \mstar(B) = 0
+        \]
+        Now take the union
+        \[
+        A \cup B = \{0, 1\}
+        \]
+        For the outer measure of $A \cup B$, take most precise open cover $(-\frac{\epsilon}{2}, 1+\frac{\epsilon}{2})$. hence the length of the interval is $I =1+ \epsilon$. Now with the infimum of this interval $I$ gives
+        \[
+        \mstar(A\cup B) = \inf I =\inf (1+\epsilon)=1
+        \]
+        So we found that
+        \[
+        \mstar(A \cup B) \neq \mstar(A) + \mstar(B)
+        \]
+        Additivity of the outer measure fails after taking union. 
+    \end{example}

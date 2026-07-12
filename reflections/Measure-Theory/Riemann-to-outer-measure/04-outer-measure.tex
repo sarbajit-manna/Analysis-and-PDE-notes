@@ -1,0 +1,26 @@
+\section{Outer Measure}
+\paragraph{Notation.}
+Throughout this section, the outer measure of a set $A \subset \R$ will be denoted by $\mstar(A)$.
+\begin{definition}
+    The outer measure of a set $A \subset \R$ is defined by
+    \[
+    \mstar(A)=\inf\left\{\sum_{k=1}^\infty l(I_k) : I_1, I_2,\cdots \text{are open intervals such that} A \subset \bigcup_{k=1}^\infty I_k \right\}
+    \]
+    where $l(I_k)$ is the length of each open interval that covers from the outside of the set $A$. 
+\end{definition}
+\begin{concept}[Infinite Union of Open Intervals as Covers]
+    Basically, the key objective of defining the outer measure of a set is to capture the set from outside using open intervals that contain the set, as tightly as possible. Stress on the fact of infinite union of those intervals. So, the question comes: Why infinite unions? This is for generalization purpose. If the set behaves very bad (like Cantor-type), where finite open covers will always give gap, one needs infinitely large number of covers. It is better to imagine the open cover as $\epsilon$-neighborhood. Caution: All intervals must be from the outside of the set. Hence, open intervals fit beautifully to define outer measure. Entering inside the set is STRICTLY NOT ALLOWED! The another beauty of this is the choice of these open intervals is as arbitrary as possible as long as they are outside the set $A$. Thus
+    \begin{itemize}
+        \item These open intervals can overlap
+        \item Can actually do anything being in outside, containing the set $A$
+        \item They have all freedom and flexibility from outside the set. This precisely help to capture very bad set
+    \end{itemize}
+    If one imagining a very oscillating subset of $\R$, he can choose a single point in that ugly set and create a cover that is precisely close to that point and also containing the whole set. And continuing for all those risky points similarly to cover them. Eventually the best cover using infimum operation will arise which will be the outer measure of that set. It is easy now to visualize all those open covers will badly overlap among each other, and that is absolutely fine.  
+\end{concept}
+\begin{analogy}
+    Imagine packing a gift. We can only pack from the outside of the gift. The goal is to pack as efficiently as possible. This theoretically means that if we try packing in several ways, the best one will be the infimum of total lengths of covering by the packing. This will capture any arbitrary shape by the packing by minimizing the gaps from boundary of the gift. 
+    \[
+    \text{cover from outside}\implies \inf\text{over all coverings }
+    \]
+    This infimum of all packing is exactly what is outer measure of a set. All mathematical machinery will be eventually discussed in this section. 
+\end{analogy}
