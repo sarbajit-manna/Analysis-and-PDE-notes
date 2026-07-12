@@ -1,0 +1,44 @@
+\section*{Clarification of the Mathematical Framework}
+
+\noindent\textbf{Context.}
+This note was prepared in November 2025 following questions raised by Prof. Serge Nicaise (Université Polytechnique Hauts-de-France) regarding the mathematical motivation of my research proposal on moisture transport in cellulose fiber networks. In particular, clarification was requested concerning the relationship between the initial graph-theoretic viewpoint and the subsequent PDE formulation based on weighted Sobolev spaces, analytic regularity, and transmission problems.
+
+\subsection*{Relationship to the Initial Graph-Theoretic Viewpoint}
+
+Graph theory was my initial motivation for thinking about moisture transport in cellulose fiber networks. At first, I attempted to represent local fiber-overlap regions as nodes and possible moisture pathways as edges of a random graph. The objective was to investigate whether the evolution of moisture content could be interpreted as a sequence of evolving equilibrium graphs describing dominant transport paths.
+
+However, closer examination of the confocal microscopy data showed that cellulose fibers form an almost fully connected, continuous network. Consequently, the discrete framework of graph theory becomes inadequate both mathematically and physically. The fibers deform continuously during moisture uptake, makes it neither natural nor mathematically justified to impose a discrete graph structure on an inherently continuous geometry.
+
+This observation naturally led to a geometric and analytical formulation of the problem. This naturally led to a PDE-based formulation. Within this framework, Prof. Nicaise's work on weighted Sobolev spaces, analytic regularity, and transmission problems becomes particularly relevant because the geometry introduces boundary singularities and interface effects that require precisely these analytical tools.
+
+\subsection*{Moisture Transport and Deformation in Cellulose Fibers}
+
+The confocal images suggest that moisture enters fibers through boundary layers before diffusing into the interior. This naturally motivates a parabolic diffusion model of the form
+
+\[
+\partial_t u=\nabla\cdot(D(x)\nabla u),
+\]
+
+where $u(x,t)$ denotes the moisture concentration and $D(x)$ is an anisotropic diffusion tensor reflecting the different transport rates along and across the fiber axis.
+
+A significant geometric feature is that the fiber boundaries change substantially between the dry and wet configurations. Dry fibers exhibit rough, highly curved boundaries, whereas wet fibers become smoother, although microscopic irregularities remain. These geometric features directly influence both diffusion and the regularity of solutions near the boundary.
+
+Sobolev spaces provide the natural functional framework for the model. They allow the confocal intensity field to be treated as an $L^p$ function possessing weak derivatives while naturally ignoring measure-zero defects such as pores, isolated discontinuities, and imaging artefacts. Consequently, the observed geometry can be approximated by smoother representatives within an appropriate Sobolev equivalence class.
+
+Nevertheless, the boundary remains intrinsically non-smooth. Classical regularity generally fails near these singular regions, motivating the transition from standard Sobolev spaces to weighted Sobolev spaces and singular--regular decompositions.
+
+In addition to diffusion, moisture absorption causes fiber swelling and elastic deformation. The computational domain therefore evolves with time, allowing geometric singularities to move or become more pronounced. This leads naturally to a coupled transport--deformation problem on evolving non-smooth domains and further motivates the use of weighted Sobolev spaces, Hardy-type inequalities, and transmission theory.
+
+\subsection*{Why Weighted Sobolev Spaces, Analytic Regularity and Transmission Problems are Natural}
+
+Standard Sobolev spaces provide the basic setting for the diffusion and elasticity equations, but they do not adequately capture the loss of regularity caused by boundary singularities such as cusps, pores, sharp corners, and intensity-drop regions. The weighted Sobolev spaces developed in the work of Prof. Serge Nicaise provide precisely the analytical framework required to control solution behavior near such singular sets.
+
+In particular, Kondrat'ev-type weighted norms originally developed for corner and edge singularities appear naturally in the cellulose fiber problem. Rough boundary regions and intensity-drop zones create analogous singular structures, allowing solutions that lose classical regularity to remain well-behaved within weighted Sobolev spaces.
+
+The associated analytic regularity theory is equally important for describing higher-order behavior near evolving boundaries. Although fiber swelling smooths certain geometric features, non-smooth regions remain. Regularity-shift techniques therefore provide a rigorous framework for quantifying how solution regularity varies with the distance from singular sets.
+
+Furthermore, Prof. Nicaise's work on polyhedral and corner domains is particularly relevant because, at the mesoscale, fiber boundaries behave approximately as piecewise-smooth or polyhedral geometries. The decomposition results developed in this setting therefore become directly applicable to evolving fiber domains.
+
+Finally, the transmission-problem framework provides an appropriate mathematical description of fiber--fiber interfaces. If two neighboring fibers occupy domains $\Omega_1$ and $\Omega_2$ separated by an interface $\Gamma$, moisture transport naturally leads to continuity or flux-jump conditions analogous to classical transmission problems for elliptic operators. Likewise, swelling-induced elastic deformation introduces transmission conditions for displacement fields across fiber contacts.
+
+Consequently, transmission theory provides a rigorous mathematical language for describing how moisture transport and elastic deformation propagate across fiber interfaces within the evolving cellulose network.
