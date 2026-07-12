@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor = blue,
+    filecolor=magenta,      
+    urlcolor=magenta
+    }
+\title{\textbf{Reply}}
+
+\author{Sarbajit Manna}
+\date{November 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Relationship to Section 2.1: Graph Theory}
+
+Graph theory was my initial motivation for thinking about moisture transport in cellulose fibers. At first I tried to represent local fiber-overlap regions as nodes and possible moisture pathways as edges of a random graph. My aim was to see whether the evolution of moisture content could be viewed as a sequence of evolving equilibrium graphs that would capture dominant transport paths.
+
+However, closer inspection of the confocal data showed that cellulose fibers form an almost fully connected, continuous network. This makes the discrete framework of graph theory inadequate—both mathematically and physically. The fibers deform continuously during moisture uptake, so it is neither practical nor legitimate to force a discrete graph structure onto a system whose geometry is inherently continuous.
+
+This limitation naturally pushed me toward a more comprehensive framework based on geometric analysis. From there the PDE viewpoint emerged almost inevitably. In this setting, Prof. Nicaise’s work on weighted Sobolev spaces, analytic regularity, and transmission problems becomes crucial, because the fiber geometry introduces boundary singularities and interface effects that must be handled with these tools.
+
+\section{Moisture Transport and Deformation in Cellulose Fibers}
+
+From the confocal images, moisture consistently enters fibers through boundary layers and then diffuses inward. This suggests a parabolic transport model of the form
+ \[
+ \partial_t u = \nabla \cdot (D(x)\nabla u)
+ \]
+where $u(x, t)$ is the moisture concentration and $D(x)$ is an anisotropic diffusion tensor, since transport is significantly different along the fiber axis and across it. 
+ 
+A key geometric feature of the system is that fiber boundaries change markedly between the dry and wet states. Dry fibers exhibit rough, high-curvature boundaries; wet fibers become smoother though micro-irregularities persist. This boundary roughness influences both the diffusion flux and the regularity of solutions near the boundary.
+
+Sobolev spaces provide the basic functional setting: they allow the confocal intensity profile to be treated as an $L^p$ function with weak gradients, and their completion property lets us disregard measure-zero defects (pores, sharp voxels, isolated discontinuities) that are unavoidable in imaging data. This gives a mathematically legitimate way to approximate the observed geometry by smoother representatives within a Sobolev equivalence class.
+
+However, because the fiber boundaries are not smooth—even when wet—solutions generally lose classical regularity near these regions. Standard Sobolev spaces cannot fully capture this loss of regularity; this is precisely why weighted Sobolev spaces and singular–regular decompositions are the natural next step (I explain the connection in the following section).
+
+In addition to transport, fibers swell when moisture enters, producing elastic deformation of the cross-section. The domain therefore evolves: geometric singularities may move or intensify over time, leading to a coupled transport–deformation problem on evolving, non-smooth domains. This coupling further motivates the use of weighted spaces, Hardy-inequality-type estimates, and transmission theory to control solution behavior.
+
+
+\section{Why Prof. Nicaise’s Weighted Sobolev Spaces, Analytic Regularity, and Transmission Problems are Essential} 
+
+While standard Sobolev spaces provide the elementary framework for the parabolic transport and elasticity models, they do not adequately capture the loss of smoothness caused by geometric irregularities—cusps, pores, intensity drops, and corner-like features—at the fiber boundary. The weighted Sobolev norms developed in the work of Prof. Nicaise allow one to control solution behavior near such singular sets where classical regularity fails.
+
+In particular, Kondrat’ev-type weighted norms used to treat corner and edge singularities apply directly to the cellulose fiber system: rough boundary zones and intensity-drop regions produce analogous singular sets, and solutions that degenerate in the classical sense can nonetheless be controlled in a weighted Sobolev sense. These spaces therefore form the natural functional setting for the model.
+
+The analytic regularity theory associated with these weighted spaces is important for describing higher-order behavior near evolving boundaries. As fibers swell, boundaries change but retain non-smooth features; the regularity-shift mechanisms provide a rigorous way to quantify how the solution gains (or loses) regularity as a function of distance to singular sets.
+
+Prof. Nicaise’s results on polyhedral and corner domains are especially relevant because, at the mesoscale, fiber boundaries behave like piecewise-smooth or almost polyhedral boundaries. The decomposition of analytic regularity available in that theory gives the appropriate tools to handle such geometries, particularly when domains evolve.
+
+Finally, the transmission problem framework (domains $\Omega_1$ and $\Omega_2$ sharing an interface $\Gamma$) maps directly to fiber–fiber contact regions observed in the confocal images. Moisture concentration across these contacts may satisfy continuity or flux-jump conditions analogous to transmission conditions for the Laplace operator; similarly, swelling-induced deformation introduces transmission effects in elasticity, so displacement fields in regions $\Omega_1$ and $\Omega_2$ must satisfy the interface conditions $\Gamma$. Thus, Prof. Nicaise's transmission viewpoint provides the precise mathematical language for describing how transport and deformation propagate across fiber–fiber contact interfaces.
+
+\end{document}

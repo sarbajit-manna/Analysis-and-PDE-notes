@@ -1,0 +1,391 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor = blue,
+    filecolor=magenta,      
+    urlcolor=magenta
+    }
+\title{\textbf{Geometric--PDE Framework for Moisture Transport in Cellulose Fiber Networks}}
+
+\author{Sarbajit Manna}
+\date{November 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction and Research Vision}
+I am Sarbajit Manna, currently pursuing a Doctorate in Philosophy in the Department of Materials Engineering at the Indian Institute of Science(IISc), Bengaluru, India. My research trajectory spans fundamental theoretical physics to applied mathematics, beginning with work on \textit{a generalized family of anisotropic compact object in general relativity} \cite{maurya2018generalized}. This foundation in geometric analysis was further developed during my MSc in Physics from the United Kingdom, where I applied functional analysis to quantum wavefunction, specifically using \textit{ Leonid Kantorovich's uniform convergence theorem to define nodal positions of bounded quantum wavefunction in $n-$dimensional Hilbert space} \cite{ArnauMScUK}.
+
+The mathematical physics background was strengthened through research on \textit{Master Equations for density matrix evolution} at Charles University, Prague, where I explored time evolution of quantum systems under probabilistic state combinations. My current research in IISc represents a synthesis of these mathematical perspectives, now applied to \textit{the geometric analysis of cellulose fibers.}
+
+My Doctoral research in IISc aims to \textit{construct a mathematical framework for understanding cellulose and cellulose-like materials.} As the most abundant biopolymer on the Earth, cellulose comprises flexible polymer chains connected by hydrogen bonds, making it hydrophilic and prone to deformation in the presence of moisture. This motivated my initial approach to employ random graph theory to model moisture transport through fibrous networks.
+
+However, implementing graph theory revealed fundamental challenges in formulating proper graph representations. While it is conceptually intuitive to visualize a dynamic graph for wet cellulose due to its sensitivity to moisture, the evolving structure of vertices and edges in $G=(V(t), E(t))$---lacked mathematical rigor due to insufficient understanding of the \textit{underlying fiber geometry and dynamics.} 
+
+This limitation prompted a pivot to my current major research direction: developing a geometric analysis to rigorously understand cellulose fiber geometry. The immediate goal is to establish geometric theorems for dry fibers, forming a foundation for modeling their geometric evolution under moisture and thermal conditions during drying processes.
+
+Experimental data from \textit{confocal fluorescence microscopy} provide the empirical basis for this geometric interpretation.  The measure of fiber intensity within the measurable space $(\Omega_{z_j}, \mathcal{B}(I_{z_i}), \mu(I_{z_{i}}))$ playing a crucial role in quantifying discontinuities, non-smooth regions, atomic measures along fibers.
+
+This geometric viewpoint naturally leads to mathematical questions concerning singularities, rough boundaries, pores in the fiber, deformation of fibers during moisture transport, and transmission interface within the fibrous structure---precisely the domains where \textit{Prof. Serge Nicaise}'s pioneering contribution in weighted Sobolev spaces and transmission problems become particularly invaluable for advancing this framework.
+
+\section{Mathematical Framework}
+\subsection{Initial Graph Theory Framework}
+My initial approach modeled cellulose fiber networks as evolving random graph processes $\widetilde{G} = (G_t)_{0}^{N}$, where $G_t = (V(t), E(t))$ represents the network state at moisture content level $t$. This framework, inspired by Bollob\'as' random graph theory \cite{bollobas2011random}, conceptualizes moisture transport pathways as dynamically acquired edges $E(t)$. 
+
+I considered the probability space $\Omega_n = \mathcal{G}\{n, M(n)\}$ of random graphs with order $n$ (determined by confocal $z$-plane analysis) and edge count $M(n)$ evolving as a function of moisture content. Physically, the formation and disruption of hydrogen bonds within 
+cellulose fibers are associated with these evolving edges, representing transient moisture 
+pathways. FTIR spectra of dry and hydrated cellulose provided experimental validation, 
+linking stronger hydrogen bonding with enhanced connectivity in the network model.
+
+The classical Erd\H{o}s-R\'enyi result on the sudden emergence for monotone properties $Q$ \cite{erdHos1960evolution} provides a natural probabilistic analogue to the phase transition governing efficient moisture transport. In this analogy, a \textit{critical moisture threshold} $M_c$ marks the point at which transport efficiency undergoes a dramatic shift:
+
+\begin{itemize}
+    \item For $M(n)<M_c$: Localized moisture transport 
+    \item For $M(n)\geq M_c$: Connected network spans the fibers
+\end{itemize}
+This transition corresponds closely to experimental confocal imaging observations, where minor variations in moisture yield significant changes in network connectivity and transport behavior.
+
+Mathematically, the emergence of a giant component during moisture diffusion can be characterized by the threshold \cite[Theorem 6.8]{bollobas2011random}:
+\begin{equation*}
+     t\geq t_1 = \left\lfloor \frac{n}{2} + 2(\log n)^{\frac{1}{2}}n^{\frac{2}{3}}\right\rfloor
+\end{equation*}
+which serves as an elegant discrete analogue of the percolation threshold ($p_c$). 
+
+However, several intrinsic limitations arise:
+\begin{itemize}
+    \item Experimental validation of precise asymptotic thresholds is hindered by continuous geometric deformation
+    \item The percolation probability $\theta(p)=P_p(|C|=\infty)$ \cite{grimmett2012percolation} assumes a fixed $p_c$, whereas fiber networks lack a well-defined $M_c$
+    \item The evolving degree distribution and dynamic graph order $n$ invalidate purely static asymptotic analysis
+    \item Traditional graph theory cannot capture interfacial phenomena and geometric singularities at fiber boundaries
+\end{itemize}
+
+These limitations, motivated a transition toward geometric-analytic framework, providing the necessary mathematical structure to address continuous deformation, boundary singularities, and the interplay between discrete
+topology and continuum transport phenomena.
+
+\subsection{Current Geometric Analysis Framework}
+The limitations of graph-theoretic approaches for capturing continuous deformation under the influence of moisture and interface behavior in cellulose fibers motivated the development of a geometric analysis framework based on \textit{bounded variation spaces} and \textit{geometric measure theory}. 
+
+\subsubsection{Bounded Variation Spaces for Fiber Intensity Function}
+
+The confocal fluorescence microscopy data reveals that the fiber intensity functions $I_{z_j} : \Omega_{z_j}\rightarrow \mathbb{R}$ exhibit jump discontinuities at fiber boundaries and complex geometric microstructure. These functions naturally reside in the space of \textit{functions of bounded variation (BV)} \cite{EvansGariepy2015}. A function $I_{z_j} \in \text{BV}(\Omega_{z_j})$ satisfies:
+\[
+\sup \left\{\int_{\Omega_{z_j}}I_{z_j}\, \text{div}\,\phi\,dx : \phi\in C_c^1(\Omega_{z_j}; \mathbb{R}^2), |\phi| \leq 1 \right\} < \infty
+\]
+
+The local version $\text{BV}_{\text{loc}}(\Omega_{z_j})$ is particularly relevant, as fiber intensity variation occurs at multiple scales. For each open set $\Theta_{z_j}\subset\subset\Omega_{z_j}$:
+
+\[
+\sup \left\{\int_{\Theta_{z_j}}I_{z_j}\, \text{div}\,\phi\,dx : \phi\in C_c^1(\Theta_{z_j}; \mathbb{R}^2), |\phi| \leq 1 \right\} < \infty
+\]
+
+This provides a rigorous variational framework for quantifying geometric complexity across different fiber regions and resolutions. 
+
+\subsubsection{Radon Measure Decomposition}
+For $I_{z_j} \in \text{BV}_{\text{loc}}(\Omega_{z_j})$, the Structure Theorem for $\text{BV}_{\text{loc}}$ functions \cite[Theorem 5.1]{EvansGariepy2015}, provides a powerful geometric decomposition using integration-by parts identity:
+\[
+\int_{\Omega_{z_{j}}} I_{z_j}\,\text{div}\,\phi\,dx = -\int_{\Omega_{z_{j}}} \phi \cdot\sigma\,d\mu
+\]
+
+where:
+\begin{itemize}
+    \item $\mu$ is a Radon measure quantifying the magnitude of intensity variation
+    \item $\sigma : \Omega_{z_j}\rightarrow \mathbb{R}^2$ with $|\sigma|=1$ provides the local orientation of maximal variation
+    \item The measured-valued vector $\sigma d\mu$ captures both the \textit{strength} and \textit{direction} of local intensity jumps.
+\end{itemize}
+
+Hence the distributional derivative admits the representation $DI_{z_j} = \sigma \|DI_{z_j}\|$, where $\|DI_{z_j}\|$ denotes the total variation measure. This decomposition enables quantitative comparison between moisture states: variations in $\|DI_{z_j}^{\text{wet}}\|$ and $\|DI_{z_j}^{\text{dry}}\|$ reflect geometric transformations of the fiber network under hydration. 
+
+\subsubsection{Analytical Framework from Standard BV Properties}
+
+The BV structure offers fundamental analytical tools and insights for interpreting fiber geometry. In the following propositions, TV corresponds to total variation.
+
+\begin{proposition} [Variational Scaling] For any local moisture concentration $c\in\mathbb{R}$:
+\[
+\text{TV}(cI_{z_j}) = |c| \text{TV}(I_{z_j})
+\]
+Deviations from this scaling law indicate nonlinear geometric response to moisture. Considering distinct moisture states:
+\[
+\text{TV}(I_{z_j})|_{\text{wet}} = \text{TV}(c_w I_{z_j}), \quad 
+\text{TV}(I_{z_j})|_{\text{semi-wet}} = \text{TV}(c_{sw_k} I_{z_j})
+\]
+with $c_{sw_1} < c_{sw_2} < \dots < c_w$, one can hypothesize monotonicity:
+\[
+\text{TV}|_{\text{dry}} > \text{TV}|_{c_{sw_1}} > \text{TV}|_{c_{sw_2}} > \dots > \text{TV}|_{c_w}
+\]
+This quantifies moisture-induced geometric smoothing and reveals nonlinear fiber response.
+\end{proposition}
+
+\begin{proposition} [Network Superposition] For overlapping or entangled fiber regions with intensities $I_{z_j}^1, I_{z_j}^2 \in \text{BV}(\Omega_{z_j})$,
+\[
+\text{TV}(I_{z_j}^1 + I_{z_j}^2) \leq \text{TV}(I_{z_j}^1) + \text{TV}(I_{z_j}^2)
+\]
+The tightness of this bound characterizes fiber interaction strength within entangled regions. 
+\end{proposition}
+
+This BV-based framework forms the foundation for subsequent analysis in Sobolev spaces, enabling the study of smooth deformation fields and PDE-based models of moisture transport on cellulose fibers, while maintaining a rigorous treatment of geometric discontinuities and  singularities at fiber interfaces. 
+
+\subsection{Weak-Derivatives and Sobolev Spaces for Fiber Analysis}
+
+While BV spaces capture discontinuities and jumps at fiber interfaces, Sobolev spaces provide the functional-analytic setting for modeling smooth deformation fields and for the weak formulation of transport. 
+
+ Weak derivatives serve as a mathematical gateway to Sobolev spaces. For the fiber intensity function $I_{z_j}\in L^p(\Omega_{z_j})$ on the 2D confocal plane $\Omega_{z_j} \subset \mathbb{R}^2$, we employ weak-derivatives defined through integration by parts \cite{evans2022partial}. 
+
+A function $I_{z_j}$ has a weak derivative $\partial_xI_{z_j} = v_{z_j} \in L_{loc}^1(\Omega_{z_j})$, if for every test functions $\phi \in C_c^\infty(\Omega_{z_j})$:
+
+\[
+\iint_{\Omega_{z_j}} I_{z_j} \partial_x \phi \, dxdy = -\iint_{\Omega_{z_j}} v_{z_j} \phi \, dxdy
+\]
+ Similarly for $\partial_y I_{z_j}$. The existence of such derivatives enables the extension to Sobolev spaces.
+
+The Sobolev space $W^{1, p}(\Omega_{z_j})$ consists of functions $I_{z_j} \in L^p(\Omega_{z_j})$, whose first-order weak derivatives $D_iI_{z_j}$ lie in the $L^p(\Omega_{z_j})$. We equip $W^{1, p}(\Omega_{z_j})$ with the norm:
+\[
+\|I_{z_j}\|_{W^{1, p}}(\Omega_{z_j}) = \left(\iint_{\Omega_{z_j}}|I_{z_j}|^p + \sum_{i=1}^2|D_iI_{z_j}|^p \, dxdy \right)^{\frac{1}{p}}
+\]
+where $D_1 = \partial_x I_{z_j} ,  D_2 = \partial_y I_{z_j}$ denotes the weak derivatives. 
+
+We explicitly consider $p=2$ for our \textit{Hilbert space} structure of $L^2(\Omega_{z_j})$, but maintain generality in $p$ to enable advanced Sobolev analysis for fiber regions, as discussed below. 
+
+\subsubsection{Advanced Sobolev Tools for Fiber Analysis}
+
+The Sobolev framework provides several advanced tools particularly relevant for fiber boundary analysis. Below I highlight the most essential for fiber characterization.
+
+\paragraph{Fiber Boundaries and Trace Theory}
+
+We consider fiber subdomains $F_k \subset \Omega_{z_j}$, representing individual fibers with boundaries $\partial F_k$ capturing the actual fiber interfaces, assuming $\partial F_k$ is sufficiently regular. The trace operator then applies to these boundaries:
+
+\[
+T : W^{1, p}(F_k) \to L^p(\partial F_k)
+\]
+
+This enables rigorous treatment of:
+\begin{itemize}
+    \item \textbf{Interface Conditions} for moisture transport across boundaries
+    \item \textbf{Boundary value problems} on individual fiber for weak formulation of moisture transport PDEs 
+    \item \textbf{Transmission Problems} at fiber-fiber interfaces
+\end{itemize}
+
+\paragraph{Sobolev Embeddings and Geometric Regularity}
+
+The Sobolev embedding theorems provide the foundation for understanding solution regularity in PDEs and for norm estimation. Among all Sobolev inequalities, I found \textit{Morrey's inequality} and \textit{Poincar\'e inequality} to be the most relevant for the 2D confocal planes $\Omega_{z_j} \subset \mathbb{R}^2$:
+
+\begin{theorem} [Morrey's Inequality]
+    For $p>2$, there exists a constant $C$ depending only on $p$ and the dimension such that:
+
+    \[
+    \|I_{z_j}\|_{C^{0, \gamma}(\overline{\Omega_{z_j}})} \leq C \|I_{z_j}\|_{W^{1, p}(\Omega_{z_j})}
+    \]
+    where $\gamma = 1 - \frac{2}{p}$ and $W^{1, p}(\Omega_{z_j}) \hookrightarrow C^{0, \gamma}(\overline{\Omega_{z_j}})$ continuously. 
+\end{theorem}
+
+    This embedding is particularly powerful for fiber analysis because:
+    \begin{itemize}
+        \item It guarantees H\"older continuity of fiber intensity function for $p > 2$
+        \item Provides pointwise control essential for geometric feature analysis
+        \item Ensures functions have continuous representatives, bridging abstract framework with geometric intuition
+    \end{itemize}
+    
+The H\"older exponent $\gamma = 1 - \frac{2}{p}$ quantitatively characterizes the smoothness of fiber intensity variations, with larger $p$ yielding smoother representatives.
+
+\paragraph{Poincar\'e Inequality for Fiber Domains}
+
+For any fiber domain $F_k \subset \Omega_{z_j}$, the Poincar\'e inequality provides a strong fundamental estimate that controls the oscillations of fiber intensity function by its weak derivative. This inequality certainly plays a crucial role in ensuring the stability and uniqueness for weak solutions for transport PDEs for our fiber setting. 
+
+\begin{theorem}[Poincar\'e Inequality]
+Let $F_k \subset \mathbb{R}^2$ be a bounded domain with Lipschitz boundary $\partial F_k$. Then there exists a constant $C_P = C_P(F_k, p) > 0$ such that for all $I_{z_j} \in W^{1, p}(F_k)$,
+
+\[
+\|I_{z_j} - (I_{z_j})_{F_k}\|_{L^p(F_k)} \leq C_P \|DI_{z_j}\|_{L^p(F_k)}
+\]
+where $(I_{z_j})_{F_k} = \frac{1}{F_k}\iint F_k I_{z_j} \, dxdy$ denotes the mean of $I_{z_j}$ over the fiber region $F_k$, and $|F_k|$ is the area of $F_k$. 
+\end{theorem}
+
+This inequality ensures that the variation of fiber intensity around its mean is bounded by the $L^p$-norm of its weak derivative. This provides a mathematical guarantee that spatial fluctuations of intensity inside each fiber are controlled by the local weak derivative of moisture or deformation. 
+
+\subsection{Connection to Professor Serge Nicaise's Research}
+
+\subsubsection{Weighted Sobolev Spaces for Boundary Layer Transport}
+
+Several of the works of Prof. Serge Nicaise, demonstrate the strength of using \textit{weighted Sobolev space} to solve PDEs. These deeply motivated me to apply transport PDEs with non-constant coefficients in a weighted Sobolev framework for modeling and deriving solutions of my fiber systems.
+
+I spent a significant amount of time studying his work on polynomial approximation in a class of weighted Sobolev spaces \cite{nicaise2000jacobi} which investigates the resolution of PDEs involving geometric singularities. This work by Prof. Nicaise helped me to understand the analytical power of weighted Sobolev space and how such a framework can serve as a rigorous  mathematical foundation for modeling my cellulose fiber system.
+
+Inspired by his section on \textit{Jacobi weighted Sobolev spaces on intervals}, we can take the open domain for each fiber $F_k=]-a, a[ \times ]-a, a[$, excluding its boundary, in the squared confocal plane and $F_k\subset \Omega_{z_j}$. Here, the global confocal plane $\Omega_{z_j}$ can be defined as follows:
+\[
+\Omega_{z_j} = \bigcup_k F_k \cup V
+\]
+where, $V$ represents the void regions in the $j$-th confocal plane. This choice ensures the existence of smooth test functions $C_c^\infty(F_k)$ and allows the use of trace operators to impose interface conditions across $\partial F_k$.
+
+Following the structure of Jacobi-weighted space, the separable 2D weight function can be defined as:
+\[
+\rho_\alpha(x, y) = \left(1-(\frac{x}{a})^2 \right)^\alpha \left(1-(\frac{y}{a})^2 \right)^\alpha
+\]
+where $\alpha >-1$ and $\alpha \in \mathbb{R}$. $\rho_\alpha(x, y)$ has the following properties:
+\begin{itemize}
+    \item $\rho_\alpha(x, y) > 0$
+    \item $\rho_\alpha(x, y) \rightarrow 0$ smoothly at the fiber boundary $\partial F_k$
+\end{itemize}
+This smooth decay of $\rho_\alpha(x, y)$ near $\partial F_k$ ensures weighted integrability and emphasizes the effects of boundary-layer on moisture transport. 
+Considering the Hilbert space $L_\alpha^2(F_k)$ of measurable functions on $F_k$, the weighted $L^2$-norm is given by
+\[
+\|I_{z_j}\|_{L^2_\rho(F_k)}^2 = 
+\iint_{F_k} |I_{z_j}(x,y)|^2 \rho_\alpha(x,y) \, dxdy,
+\]
+and the corresponding weighted Sobolev space is defined as
+\[
+V^{m,2}_\rho(F_k)
+=
+\left\{ I_{z_j} \in L^2_\rho(F_k) \; : \;
+\sum_{|\beta|\le m}
+\iint_{F_k}
+|D^\beta I_{z_j}(x,y)|^2
+\rho_\alpha(x,y) \, dxdy < \infty
+\right\}.
+\]
+
+This weighted Sobolev structure captures both the interior and boundary layer behavior of the fiber intensity and moisture fields, providing a rigorous analytical bridge between the weighted PDE framework of Prof. Nicaise and the microscopic fiber transport phenomena observed in cellulose system. 
+
+\subsubsection{Hardy Inequalities and Weight Transitions}
+
+The most profound insights from Prof. Nicaise's work, particularly Theorem 3.4 \cite{nicaise2000jacobi} is the family of \textit{Hardy-type inequalities} that govern relationships between derivatives and weights. Contrary to my initial oversimplification, these inequalities reveal a sophisticated structure:
+
+For a function, $u \in W^{l,2}_{l+\alpha}(F_k)$, Theorem 3.4 establishes that
+\[
+\sum_{\lambda\in\mathbb{N}^2 : |\lambda|\leq l}\sum_{\beta\in \mathbb{N}^2 : \frac{\lambda}{2}\leq\beta\leq\lambda}\iint_{F_k}|D^\beta(u)|^2\rho_{\alpha+2\beta-\lambda}(x, y) \, dxdy \lesssim \|u\|^2_{W_{{l+\alpha}}^{l, 2}(F_k)}
+\]
+
+This inequality has profound implications in my fiber transport problem. 
+
+\begin{itemize}
+    \item It provides \textbf{controlled degradation} of derivative regularity: higher-order derivatives in the norm on the right-hand side guarantee weighted control of lower-order derivatives on the left-hand side.
+    \item The weight $\rho_{\alpha+2\beta-\lambda}$ precisely interpolates between the strong boundary weight $\rho_{l+\alpha}$ and milder interior weights, capturing the transition from boundary-layer to bulk transport
+    \item For even orders $l=2m$, this specializes to the elegant result (Theorem 3.4, Eq. 3.12):
+    \[
+    \sum_{|\beta|\leq m}\iint_{F_k}|D^\beta u|^2\rho_\alpha(x, y) \, dxdy \lesssim \|u\|^2_{W_{W^{l,2}_{l+\alpha}(F_k)}}
+    \]
+    demonstrating that functions in the high-order space $W^{2m,2}{2m+\alpha}$ automatically enjoy control of derivatives up to order $m$ with the milder weight $\rho_\alpha$
+\end{itemize}
+
+\subsubsection{Geometric Singularities and Polynomial Approximations}
+
+Theorem 3.5 further extends this framework to handle geometric singularities at fiber vertices through Taylor polynomial approximation. For moisture transport fields $u \in W^{l,2}_{l+\alpha}(F_k)$, the estimate
+\[
+\sum_{|\beta| < \frac{l}{2}}\iint_{F_k} |D^\beta(u - T_Ku)|^2r^{2|\beta|-l}\rho_\alpha(x, y) \, dxdy \lesssim \|u\|^2_{W_{W^{l,2}_{l+\alpha}(F_k)}(F_k)}
+\]
+
+provides a rigorous decomposition into regular ($T_K u$) and singular components, where $r$ is the distance to the nearest vertex and $K$ is carefully chosen based on the weight parameters.
+
+This decomposition is particularly relevant for my fiber network analysis, as it enables:
+\begin{itemize}
+\item \textbf{Local regularity analysis} at fiber junctions and corners
+\item \textbf{Stable numerical approximation} by separating smooth and singular components
+\item \textbf{Interface conditions} for transmission problems between adjacent fibers
+\end{itemize}
+
+Professor Serge Nicaise's weighted Sobolev framework thus provides the complete mathematical infrastructure I need to analyze moisture transport in cellulose fibers—from the bulk behavior captured by standard Sobolev spaces to the boundary-layer phenomena encoded through Jacobi weights, with Hardy inequalities ensuring the stability and well-posedness of the entire formulation.
+
+\subsubsection{Analytic Regularity in Polyhedral Domains}
+
+The extensive body of work by Prof. Nicaise on weighted analytic regularity in polyhedral domains provides a powerful framework for analyzing elliptic boundary value problems in geometrically singular configurations. In particular, the paper \textit{Weighted analytic regularity in polyhedra} \cite{costabel2014weighted} develops an abstract framework that systematically establishes analytic regularity through the interplay of basic regularity and regularity shift results.
+
+The core strategy decomposes the analysis into three fundamental components:
+
+\begin{itemize}
+    \item \textbf{Type B (Basic Regularity)}: Establishes finite-order regularity in weighted Sobolev spaces:
+    \[
+    u \in \mathbb{V},\ \mathbb{P}u \in \mathbb{Y}^m \implies u \in \mathbb{X}^m
+    \]
+    \item \textbf{Type S (Regularity Shift)}: Provides the mechanism to increase regularity, with the crucial Cauchy-estimate version:
+    \[
+    u \in \mathbb{X}^m,\ \mathbb{P}u \in \mathbb{Y}^k \implies u \in \mathbb{X}^k \quad \text{for } k > m
+    \]
+    with estimates of the form $\frac{1}{k!}|u|_{\mathbb{X}^k} \leq A^{k+1}(\cdots)$
+    \item \textbf{Type A (Analytic Regularity)}: The culmination yielding full analytic smoothness
+\end{itemize}
+
+The profound insight is the decomposition:
+\[
+\text{Type B + Type S} \Rightarrow \text{Type A}
+\]
+
+This framework directly applies to my analysis of cellulose fiber networks, where fiber junctions and boundaries create geometric singularities analogous to edges and corners in polyhedral domains. Each fiber subdomain $F_k$ exhibits edge-type singularities along its boundary $\partial F_k$, necessitating weighted spaces with distance-based weights:
+\[
+w_\ell(x) = r(x)^{\ell + \beta}, \quad r(x) = \text{dist}(x, \partial F_k)
+\]
+where the weight parameter $\beta$ is chosen based on the fiber geometry and boundary conditions.
+
+The anisotropic nature of fiber transport—with different regularity parallel and perpendicular to fiber boundaries—further aligns with the anisotropic weighted Sobolev spaces developed for polyhedral domains, where derivatives tangential and normal to edges carry different weights. The anisotropic weight structure $w_\alpha = \prod_{e\in \mathcal{E}} r_e^{\max(0,\beta_e + |\alpha_e^\perp|)}$ developed for polyhedral domains naturally adapts to capture the directional dependence of moisture transport along fiber axes versus across boundaries.
+
+\subsubsection{Transmission Problems and Singular Decomposition}
+
+Complementary to the analytic regularity framework, Prof. Nicaise's work on transmission problems in dihedral domains \cite{aibeche2007p} provides a decomposition of the solution $u = u_R + cS$ into a regular part $u_R \in W^{2,p}$ and a singular part $cS$, where $S$ is an explicit singular function. This decomposition is directly applicable to my fiber network model, as it allows separation of smooth and singular behaviors at fiber interfaces and pores, which are inherent in cellulose structures.
+
+This connection demonstrates how Prof. Nicaise's abstract framework for analytic regularity provides the mathematical foundation for establishing well-posedness and smoothness of moisture transport equations in geometrically complex fiber networks.
+
+\subsubsection{Sobolev Spaces on Fractal Networks}
+My initial graph-theoretic approach to modeling cellulose fiber networks finds a sophisticated mathematical counterpart in Prof. Nicaise's work on Sobolev spaces in generalized fractal networks \cite{nicaise2018density}. His framework for defining and analyzing PDEs on infinite $p$-adic weighted trees provides the rigorous foundation I was seeking for transitioning from discrete graph models to continuum transport equations.
+
+In particular, his characterization of density properties for compactly supported functions in Sobolev spaces $H^1_\mu$ on infinite trees, and the development of trace operators at infinity, directly addresses the fundamental challenge I encountered: how to properly define function spaces and boundary conditions on network structures that exhibit fractal-like complexity at multiple scales.
+
+This work demonstrates that the gap between my initial graph-theoretic intuition and the required PDE analysis is not only bridgeable but has been systematically addressed in Prof. Nicaise's research program.
+
+\medskip
+\noindent
+In summary, Prof. Serge Nicaise’s body of work—spanning weighted Sobolev spaces, Hardy inequalities, analytic regularity in polyhedra, transmission problems, and Sobolev spaces on fractal structures—forms a coherent and complete analytical foundation for my research on moisture transport in cellulose fiber systems. Each component addresses a fundamental challenge in my research program.
+
+\section{Expected Outcomes and Research Vision at CERAMATHS, UPHF}
+
+This proposed research stay at the CERAMATHS laboratory, Université Polytechnique Hauts-de-France (UPHF), aims to establish a rigorous analytical framework connecting the geometric analysis of cellulose fibers with the advanced mathematical machinery developed by Prof. Serge Nicaise in weighted Sobolev spaces, transmission problems, and analytic regularity theory.
+
+\subsection*{Primary Scientific Objectives}
+\begin{itemize}
+    \item \textbf{Mathematical Advancement:} To develop a robust theoretical model for moisture transport and deformation in cellulose fibers using weighted Sobolev and BV frameworks inspired by Prof. Nicaise’s analytic formulations.
+    \item \textbf{Geometric–Analytic Synthesis:} To connect confocal microscopy data of fiber geometry with functional-analytic tools such as trace theorems, Hardy inequalities, and anisotropic weighted regularity for constructing physically consistent PDEs.
+    \item \textbf{Extension to Multi-Fiber Systems:} To extend single-fiber formulations to network-level analysis, capturing interface transmission and singularity-driven effects observed in experimental cellulose assemblies.
+\end{itemize}
+
+\subsection*{Collaborative Vision with CERAMATHS}
+Working under the guidance of Prof. Serge Nicaise and within the multidisciplinary environment of the CERAMATHS laboratory will offer the ideal platform to bridge mathematical theory and materials science. While the focus of this collaboration will be on the mathematical formalism, the proximity to experimental resources will ensure that any analytical development remains physically grounded and applicable to cellulose-based materials.
+
+This exchange period will therefore serve two complementary purposes:
+\begin{itemize}
+    \item Strengthening the \textbf{mathematical depth} of my doctoral research by engaging directly with Prof. Serge Nicaise’s school of analysis.
+    \item Building a \textbf{long-term collaboration} between IISc Bengaluru and CERAMATHS-UPHF in the domain of geometric modeling of organic materials.
+\end{itemize}
+
+\subsection*{Anticipated Outcomes}
+The research stay is expected to yield:
+\begin{itemize}
+    \item A rigorously formulated geometric–PDE framework for moisture transport in fibrous cellulose systems.
+    \item A joint publication with Prof. Serge Nicaise on the application of weighted Sobolev and analytic regularity methods to complex material geometries.
+    \item A sustained mathematical link between the theoretical analysis at CERAMATHS and the ongoing experimental studies at IISc.
+\end{itemize}
+
+\subsection*{Long-Term Perspective}
+Beyond the immediate goals, this collaboration will serve as the mathematical foundation for extending geometric analysis to other hierarchical biopolymers. The integration of Prof. Serge’s analytic regularity theory with experimental data-driven approaches in materials science will open new directions in modeling organic architectures and deformable materials.
+
+This research visit thus represents a decisive step toward uniting rigorous functional analysis with real-world material complexity, establishing a sustained academic bridge between IISc and UPHF.
+
+
+\section*{Acknowledgment}
+This proposal is prepared for consideration of a research exchange at the CERAMATHS Laboratory, Université Polytechnique Hauts-de-France, under the supervision of Prof. Serge Nicaise.
+
+\newpage  % Add this line
+\bibliographystyle{plain}
+\bibliography{Nicaise_proposal}
+\end{document}
+\bibliographystyle{plain}
+\bibliography{Nicaise_proposal}
+\end{document}
+
+\bibliographystyle{plain}
+\bibliography{Nicaise_proposal}
+\end{document}
