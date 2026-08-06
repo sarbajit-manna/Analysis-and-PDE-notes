@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\grad}{\nabla}
+\newcommand{\lap}{\Delta}
+\newcommand{\dx}{\,dx}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\title{\textbf{A Priori Estimates}}
+\author{Sarbajit Manna}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+
+\vspace{1em}
+
+
+\section{What is an A Priori Estimate?}
+
+An \emph{a priori} estimate provides bounds on a solution assuming that the solution exists, but without requiring its existence to be established beforehand. Such estimates play a fundamental role in existence theory since, together with approximation or compactness arguments, they often lead to proofs of existence. These estimates provide quantitative bounds on the solution before its existence is established. Such bounds are then used, together with compactness or continuity arguments, to prove existence.
+
+%================================================
+\section{Why Should We Care About A Priori Estimates?}
+A priori estimates play a central role in the theory of partial differential equations.  For example, in establishing the solvability of Dirichlet problem by the method of continuity and in proving the higher order regularity of $C^2$ solutions under appropriate smoothness hypothesis. In both cases, the estimates provide the necessary compactness properties for certain classes of solutions from which the desired results are easily inferred. Similarly, the Caccioppoli inequality enables us to give a a priori estimates of the $L^2-$norm of the solution $u$.   
+%================================================
+\section{An Example of an A Priori Estimate}
+\begin{theorem}
+Let $u$ be a solution of
+\begin{equation}
+\begin{cases}
+A_{ij}^{\alpha\beta} D_{\alpha\beta}u^j=f_i, & \text{in } \Omega,\\[0.3em]
+u=g, & \text{on } \partial\Omega.
+\end{cases}
+\end{equation}
+of class $W^{2,2}(\Omega, \R^m)$ or $C^2(\bar{\Omega},\R^m)$, where the coefficients $A_{ij}^{\alpha\beta}\in C^{0,\sigma}(\bar{\Omega})$ satisfy the Legendre-Hadamard condition, $f_i\in C^{0,\sigma}(\bar{\Omega}), \, g\in C^{2,\sigma}(\bar{\Omega},\R^m)$, and finally $\partial\Omega$ is of class $C^{2,1}$. Then $u\in C^{2,\sigma}(\bar{\Omega}, \R^m)$ and
+\begin{equation}
+    \|u\|_{C^{2,\sigma}(\bar{\Omega})}\le c\left\{\|f\|_{C^{0,\sigma}(\bar{\Omega}}+\|g\|_{C^{2,\sigma}(\bar{\Omega}}+\|D^2 u\|_{L^2(\Omega)}\right\}
+\end{equation}
+where $c$ is a constant depending on $n,\sigma, \Omega$, the ellipticity constants, and the $C^{0,\sigma}$ norm of the coefficients $A_{ij}^{\alpha\beta}(x)$. 
+\end{theorem}
+Here, (2) is just an a priori estimate where we do not know how to show the existence of a $W^{2,2}$ or $C^2$ solution of (1).
+\bibliographystyle{plain}
+
+\begin{thebibliography}{9}
+
+\bibitem{Evans}
+L. C. Evans,
+\emph{Partial Differential Equations},
+Graduate Studies in Mathematics, Vol. 19,
+American Mathematical Society.
+
+\bibitem{GT}
+D. Gilbarg and N. S. Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+Springer.
+
+\bibitem{Giaquinta}
+M. Giaquinta,
+\emph{Introduction to Regularity Theory for Nonlinear Elliptic Systems},
+Birkhäuser.
+
+\end{thebibliography}
+
+\end{document}
