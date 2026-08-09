@@ -1,0 +1,88 @@
+\documentclass{article}
+\input{preamble}
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The Metric space provides an essential tool in analysis. The elegance of metric notion in functional spaces, provides an important method to determine the difference between two functions inside a bounded domain. This brief article is my attempt to reflect the mathematical details of this measurement, which is widely used in almost all aspects of functional analysis, particularly in spaces equipped with the supremum norm, typically $L^\infty$ or $C_b(\Omega)$. 
+\section{From Euclidean Distance to Function Distance} An ordinary Euclidean metric space $(X, d)$ measures the distance between any two points. The Euclidean norm is given as:
+\[
+d(x,y)=|x-y| \quad \forall x,y\in X
+\]
+In Euclidean space, the distance between two points is well-defined by the norm $|x-y|$. But in functional analysis, we are dealing with objects that take infinitely many values. A function assigns a value to every point
+\[
+|f(x)-g(x)|,
+\qquad x\in\Omega
+\]
+rather than a single number.
+Thus, a direct pointwise measurement leads to infinitely many differences, which need to be aggregated into a single scalar. This requires a different notion of distance.
+
+\section{The Supremum Metric} If we replace the points in the Euclidean space with functions, the difference measurement needs some extra care. A function $f(x)$ contains a value at every point $x$, so comparing two continuous functions requires comparing their pointwise difference across the entire bounded domain $\Omega$. Hence, the metric uses the concept of \textit{supremum} to tackle this challenge. Supremum asks-what is the largest discrepancy between two functions $f$ and $g$ anywhere in the bounded domain. The metric space for the functions $f(x)$ and $g(x)$ is denoted by the notation $(C(\Omega),d_\infty)$ The metric can now be simply defined as:
+\[
+d_\infty(f,g)=\sup_{x\in\Omega} |f(x)-g(x)|
+\]
+Unlike two points in Euclidean space, two functions are objects whose values may differ at every point of their domain. We therefore need a way of aggregating these pointwise differences into a single number. Hence, \textit{supremum} records the largest pointwise discrepancy between the two functions. The metric $d_\infty(f,g)$ measures the worst case pointwise difference between two entire functions within a bounded domain. This also implies why the notion of \textit{boundedness} of the function difference is essential $d_\infty$ to be finite; compactness of the domain together with continuity is one standard way to guarantee this. Although not universally, but for many functions, $d_\infty$ is also dependent on the choice of the bound in the domain.
+
+\section{Connection to Uniform Convergence}.The supremum metric is closely connected with the notion of \textit{uniform convergence} for functions. A sequence of functions $f_n$ converges uniformly to $f$ on $\Omega$ precisely when
+\[
+d_\infty(f_n,f)
+=
+\sup_{x\in\Omega}|f_n(x)-f(x)|
+\longrightarrow 0.
+\]
+
+Equivalently, for every $\epsilon>0$, there exists $N\in\mathbb{N}$ such that
+
+\[
+n\geq N
+\implies
+|f_n(x)-f(x)|<\epsilon
+\qquad
+\forall x\in\Omega.
+\]
+
+The important feature is that the same $N$ works for every point $x\in\Omega$.
+
+
+\section{Examples}
+Consider
+\[
+f(x)=x^2,\quad g(x)=x^2+\frac{1}{10}, \quad\forall x\in [0,1]
+\]
+$\implies$
+\[
+d_\infty(f,g)=\frac{1}{10}
+\]
+Here, the metric is independent on the values of $x$ because the pointwise difference between the functions is constant. It will generate the same metric in any bounded domain. In contrast, consider:
+\[
+f(x)=x^2,
+\qquad
+g(x)=x^2+x,
+\qquad x\in[0,1].
+\]
+
+Then
+
+\[
+d_\infty(f,g)
+=
+\sup_{x\in[0,1]}|x|
+=
+1.
+\]
+
+Here, the distance depends on the choice of domain. For example, if the domain were $[0,2]$, the corresponding supremum would be $2$. But there are examples also where the metric of this supremum norm is finite over an unbounded domain. This happens because the functions are bounded. For bounded functions, the supremum norm can be finite even on unbounded domains. For example,
+\[
+f(x)=\sin x,\quad g(x)=0\quad\implies d_\infty(f,g)=\sup_{x\in\mathbb{R}}|f(x)-g(x)|=1
+\]
+gives a finite supremum norm $1$ on unbounded domain because $f(x)$ is bounded.
+Hence, the crucial criterion is the finiteness of the supremum norm of the difference of the functions.
+
+The core extraction of this article is:
+\[
+\boxed{\textit{
+A function-to-function distance must convert infinitely many
+pointwise differences into one scalar quantity.}}
+\]
+\end{document}
