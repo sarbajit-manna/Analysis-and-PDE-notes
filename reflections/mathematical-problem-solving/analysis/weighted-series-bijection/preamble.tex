@@ -1,0 +1,123 @@
+% --- Encoding and Fonts ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}  % Improves typography
+
+% --- Geometry ---
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% --- Core Math Packages ---
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{mathtools}   % Extends amsmath
+\usepackage{bm}          % Bold math symbols
+\usepackage{mathrsfs}    % Script fonts (\mathscr)
+\usepackage{dsfont}      % Indicator functions (\mathds{1})
+
+% --- Differential Operators (Alternative to physics) ---
+\usepackage{derivative}  % For \odv, \pdv, \dv
+
+% --- Figures and Tables ---
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{booktabs}    
+\usepackage{array}       % Better column formatting
+\usepackage{tabularx}    % 
+\usepackage{xcolor}
+
+% --- Lists ---
+\usepackage{enumitem}
+
+% --- Units ---
+\usepackage{siunitx}
+
+% --- Diagrams ---
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning, shapes, decorations.pathreplacing}
+
+% --- Headers and Footers ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Spacing ---
+\usepackage{setspace}
+\onehalfspacing  % or \doublespacing for thesis
+
+% --- Hyperlinks ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    filecolor=blue
+}
+\usepackage{cleveref}  % Must be loaded after hyperref
+
+% --- Enhanced Theorems ---
+\usepackage{thmtools}  % Better control over theorem environments
+
+\declaretheoremstyle[
+    headfont=\bfseries,
+    notefont=\bfseries,
+    bodyfont=\itshape,
+    spaceabove=6pt,
+    spacebelow=6pt
+]{definition}
+\declaretheoremstyle[
+    headfont=\bfseries,
+    notefont=\bfseries,
+    bodyfont=\normalfont,
+    spaceabove=6pt,
+    spacebelow=6pt
+]{plain}
+\declaretheoremstyle[
+    headfont=\bfseries,
+    notefont=\bfseries,
+    bodyfont=\normalfont,
+    spaceabove=6pt,
+    spacebelow=6pt
+]{remark}
+
+\declaretheorem[style=definition, name=Definition, numberwithin=section]{definition}
+\declaretheorem[style=plain, name=Proposition, numberwithin=section]{proposition}
+\declaretheorem[style=plain, name=Theorem, numberwithin=section]{theorem}
+\declaretheorem[style=definition, name=Example, numberwithin=section]{example}
+\declaretheorem[style=remark, name=Remark, unnumbered]{remark}
+
+% --- Custom Commands ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Leb}{\mathcal{L}}
+\newcommand{\Borel}{\mathcal{B}}
+\newcommand{\fiber}{F}
+\newcommand{\confocal}{\Omega}
+
+% --- Math Operators ---
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\div}{div}
+\DeclareMathOperator{\tr}{tr}  % trace
+
+% --- Title and Author ---
+\title{\textbf{A Bijection and a Weighted Series}}
+\author{
+    Sarbajit Manna
+}
+\date{\today}

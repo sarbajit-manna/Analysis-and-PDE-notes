@@ -1,0 +1,173 @@
+\documentclass{article}
+\input{preamble}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Does there exist a bijective function
+\[
+f:\mathbb{N}\to\mathbb{N}
+\]
+such that
+\[
+\sum_{n=1}^{\infty}\frac{f(n)}{n^2}<+\infty?
+\]
+
+\section*{Solution}
+
+\subsection*{Initial Approach}
+
+Since \(f:\mathbb{N}\to\mathbb{N}\) is required to be bijective, a natural
+first choice is the identity map
+\[
+f(n)=n.
+\]
+This map is injective, since
+\[
+f(n_1)=f(n_2)
+\quad\Longrightarrow\quad
+n_1=n_2,
+\]
+and it is surjective because every \(m\in\mathbb{N}\) is the image of
+\(m\). Hence \(f(n)=n\) is a bijection from \(\mathbb{N}\) onto itself.
+
+For this choice,
+\[
+\sum_{n=1}^{\infty}\frac{f(n)}{n^2}
+=
+\sum_{n=1}^{\infty}\frac{n}{n^2}
+=
+\sum_{n=1}^{\infty}\frac{1}{n}.
+\]
+The last series is the harmonic series, and therefore diverges.
+
+My initial intuition was that the identity permutation should give the
+smallest possible value of the series among all bijections
+\(f:\mathbb{N}\to\mathbb{N}\). Since even this choice gives the divergent
+harmonic series, I was led to the conclusion that no bijection can make
+the given series converge.
+
+\subsection*{Gap in the Initial Argument}
+
+The preceding argument contains an unjustified step. Although
+\(f(n)=n\) gives the harmonic series, this alone does not show that the
+identity permutation minimizes
+\[
+\sum_{n=1}^{\infty}\frac{f(n)}{n^2}
+\]
+over all bijections \(f:\mathbb{N}\to\mathbb{N}\).
+
+In particular, bijectivity does not imply the pointwise inequality
+\[
+f(n)\geq n.
+\]
+Thus the intuition behind the initial approach requires a separate
+argument before the conclusion can be established rigorously.
+
+\subsection*{Proof}
+
+Suppose that
+\[
+f:\mathbb{N}\to\mathbb{N}
+\]
+is a bijection. We show that
+\[
+\sum_{n=1}^{\infty}\frac{f(n)}{n^2}
+\]
+must diverge.
+
+For \(N\in\mathbb{N}\), let
+\[
+S_N=\sum_{n=1}^{N}\frac{f(n)}{n^2}
+\]
+and denote the \(N\)-th harmonic number by
+\[
+H_N=\sum_{n=1}^{N}\frac{1}{n}.
+\]
+
+We write
+\[
+\frac{1}{n}
+=
+\frac{\sqrt{f(n)}}{n}\,
+\frac{1}{\sqrt{f(n)}}.
+\]
+Therefore, by the Cauchy--Schwarz inequality,
+\[
+\left(\sum_{n=1}^{N}\frac{1}{n}\right)^2
+\leq
+\left(\sum_{n=1}^{N}\frac{f(n)}{n^2}\right)
+\left(\sum_{n=1}^{N}\frac{1}{f(n)}\right).
+\]
+Hence
+\[
+H_N^2
+\leq
+S_N
+\sum_{n=1}^{N}\frac{1}{f(n)}.
+\]
+
+Since \(f\) is injective, the numbers
+\[
+f(1),f(2),\ldots,f(N)
+\]
+are \(N\) distinct positive integers. Among all sets of \(N\) distinct
+positive integers, the sum of the reciprocals is maximized by
+\(\{1,2,\ldots,N\}\). Consequently,
+\[
+\sum_{n=1}^{N}\frac{1}{f(n)}
+\leq
+\sum_{n=1}^{N}\frac{1}{n}
+=
+H_N.
+\]
+
+It follows that
+\[
+H_N^2
+\leq
+S_N H_N.
+\]
+Since \(H_N>0\), division by \(H_N\) gives
+\[
+S_N\geq H_N.
+\]
+Thus, for every \(N\in\mathbb{N}\),
+\[
+\boxed{
+\sum_{n=1}^{N}\frac{f(n)}{n^2}
+\geq
+\sum_{n=1}^{N}\frac{1}{n}.
+}
+\]
+
+But the harmonic series diverges, so
+\[
+H_N\longrightarrow+\infty
+\qquad\text{as }N\to\infty.
+\]
+Therefore
+\[
+S_N\longrightarrow+\infty,
+\]
+and hence
+\[
+\sum_{n=1}^{\infty}\frac{f(n)}{n^2}=+\infty.
+\]
+
+Thus there does not exist a bijective function
+\(f:\mathbb{N}\to\mathbb{N}\) for which
+\[
+\sum_{n=1}^{\infty}\frac{f(n)}{n^2}<+\infty.
+\]
+\hfill\(\square\)
+
+\bigskip
+\noindent
+\textit{Problem source.}
+\href{https://www.instagram.com/p/DbRE2FdDOf1/}
+{mmathemagics, Instagram, 27 July 2026.}
+\end{document}
